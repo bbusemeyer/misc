@@ -1,0 +1,1 @@
+/home/brian/tools/.vimrc

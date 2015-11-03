@@ -1,0 +1,1 @@
+/home/brian/tools/.bash_logout
