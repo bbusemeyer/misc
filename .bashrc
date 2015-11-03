@@ -163,28 +163,20 @@ cd_func ()
 
 alias cd=cd_func
 
-#=====================================================================================
-# The following shell variables are needed for executing scripts in exciting
-# tutorials
-# 
-PATH=/home/brian/programs/xcrysden-1.5.53-bin-shared/:$PATH
-export EXCITINGROOT=/home/brian/programs/exciting
-export EXCITINGBIN=$EXCITINGROOT/bin
-export EXCITINGRUNDIR=/home/brian/programs/exciting/tmpdir
-export EXCITINGSCRIPTS=$EXCITINGROOT/scripts
-export EXCITINGATAT=$EXCITINGSCRIPTS/ATAT@exciting
-export EXCITINGASE=$EXCITINGSCRIPTS/ase
-export EXCITINGVISUAL=$EXCITINGROOT/xml/visualizationtemplates
-export ATATROOT=$EXCITINGSCRIPTS/atat
-#-------------------------------------------------------------------------------------
-export TIMEFORMAT="   Elapsed time = %0lR"
-#-------------------------------------------------------------------------------------
-export PYTHONPATH=$PYTHONPATH:$EXCITINGASE
-export PATH=$PATH:$EXCITINGSCRIPTS:$EXCITINGBIN
-export PATH=$PATH:$EXCITINGATAT:$EXCITINGASE/tools
-#=====================================================================================
-
 # Add sources to path.
-PATH=~/bin:$PATH
-PATH=.:$PATH
-PYTHONPATH=/home/brian/tools/mython:$PYTHONPATH
+export PATH=/home/brian/tools/mython:$PATH
+export PATH=/home/brian/tools:$PATH
+export PATH=~/programs/mathematica/Executables:$PATH
+export PATH=~/programs/espresso-5.1.1/bin:$PATH
+export PATH=~/programs/vesta:$PATH
+export PATH=~/tools:$PATH
+export PATH=~/bin:$PATH
+export PATH=.:$PATH
+export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
+export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
+export PYTHONPATH=/home/brian/programs/qwalk/utils/autogen:$PYTHONPATH
+export PYTHONPATH=/home/brian/tools/mython:$PYTHONPATH
+export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
+# Set mpirun debugger with use of -debug option.
+export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'

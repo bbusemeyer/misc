@@ -4,13 +4,19 @@ alias grep='grep --color'  # show differences in colour
 alias l='less -r'
 alias R='R -q'
 alias mkddir='mkdir `date "+%F"`'
-alias py='python'
+alias py='python -u'
+alias py3='python3.4 -u'
+alias python='python -u'
 alias gpp='g++'
 alias tp='trash-put'
 alias tarp='tar --use-compress-program=pigz'
-alias backupto='rsync -aui --delete ~/Desktop ~/Pictures ~/Documents ~/programs ~/Music ~/projects ~/tools ~/bin ~/.bash* ~/.vim ~/.*rc ~/.matplotlib'
+alias backupto='rsync -aui --delete ~/Desktop ~/Pictures ~/Documents ~/programs ~/Music ~/projects ~/tools ~/bin ~/.bash* ~/.vim ~/.*rc'
 alias mcrypt='mcrypt -u'
 alias ppl='python ~/tools/plotter.py'
+alias rsync='rsync --progress'
+alias qs='qstat -a'
+alias notebook="google-chrome; ipython notebook"
+alias update="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
 
 # tools shortcuts
 alias rr='~/tools/record_run.sh'
@@ -22,16 +28,24 @@ alias cscp='~/tools/cs_scp.sh'
 alias csftp='~/tools/cs_sftp.sh'
 alias ry='~/tools/recycle.sh'
 
+# Globus Endpoints.
+gmira='alcf#dtn_mira'
+gtaub='illinois#iccp'
+glap='busemey2#laptop'
+
 # Ma's local ip's
 desktop2='192.168.2.102'
 
-# Dr. Wagner's office computer:
+# Lucas's office computer:
 hawk='busemey2@hawk.physics.illinois.edu'
 # Taub supercomputer
 taub='busemey2@taub.campuscluster.illinois.edu'
 # Office computer 
-ver='brian@veritas.physics.illinois.edu'
+#ver='brian@veritas.physics.illinois.edu'
+ver='brian@128.174.249.177'
 # Argonne Mira supercomputer.
 mira='busemey@mira.alcf.anl.gov'
+# Globus CLI
+glob='busemey2@cli.globusonline.org'
 
-backuplist='./Desktop ./Pictures ./Documents ./homework ./programs ./Music ./projects ./tools ./.bash* ./.*rc .matplotlib/ .vim/'
+backuplist='./Desktop ./Pictures ./Documents ./homework ./programs ./Music ./projects ./tools ./.bash* ./.*rc .matplotlib/'

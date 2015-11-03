@@ -33,11 +33,12 @@ set history=50	   " keep 50 lines of command line history
 set ruler		   " show the cursor position all the time
 set showcmd		   " display incomplete commands
 set incsearch	   " do incremental searching
-set tabstop=2      " makes tabs of width 4
-set shiftwidth=2   " indents by 4
+set tabstop=2      " makes tabs of width 2
+set shiftwidth=2   " indents by 2
 set expandtab      " use spaces instead of tabs
 set number         " numbers the lines
 set wildmenu       " tab completion
+set fdm=indent
 set tw=80
 set t_Co=256
 
@@ -107,8 +108,39 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-hi Folded ctermfg=000
-hi Folded ctermbg=254
+hi Folded ctermfg=245
+hi Folded ctermbg=white
 
 autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent loadview 
+"autocmd BufWinEnter * silent loadview 
+
+" # Function to permanently delete views created by 'mkview'
+function! MyDeleteView()
+    let path = fnamemodify(bufname('%'),':p')
+    " vim's odd =~ escaping for /
+    let path = substitute(path, '=', '==', 'g')
+    if empty($HOME)
+    else
+        let path = substitute(path, '^'.$HOME, '\~', '')
+    endif
+    let path = substitute(path, '/', '=+', 'g') . '='
+    " view directory
+    let path = &viewdir.'/'.path
+    call delete(path)
+    echo "Deleted: ".path
+endfunction
+
+" # Command Delview (and it's abbreviation 'delview')
+command Delview call MyDeleteView()
+" Lower-case user commands: http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+cabbrev delview <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Delview' : 'delview')<CR>
+
+" Julia filetype detection.
+if v:version < 704
+  " NOTE: this line fixes an issue with the default system-wide lisp ftplugin
+  "       which didn't define b:undo_ftplugin on older Vim versions
+  "       (*.jl files are recognized as lisp)
+  autocmd BufRead,BufNewFile *.jl    let b:undo_ftplugin = "setlocal comments< define< formatoptions< iskeyword< lisp<"
+endif
+autocmd BufRead,BufNewFile *.jl      set filetype=julia
+set omnifunc=LaTeXtoUnicode#omnifunc
