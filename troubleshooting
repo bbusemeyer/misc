@@ -1,1 +1,12 @@
-/home/brian/tools/troubleshooting
+
+=======================================================================
+Problem: Audacity records audio too slow.
+
+Problem is with the sound card? Changing to pulse audio for recording
+and playback solves the problem.
+
+=======================================================================
+
+To get vim to stop messing with python files:
+
+remove expandtab, etc. line from /usr/share/vim/vim74/ftplugin/python.vim

@@ -1,1 +1,47 @@
-/home/brian/tools/ln_notes
+Differences between hard-links and soft-links:
+
+Hard:
+        ! filename ! inode # !
+        +--------------------+
+                        \
+                         >--------------> ! permbits, etc ! addresses !
+                        /                 +---------inode-------------+
+        ! othername ! inode # !
+        +---------------------+
+
+Soft:
+        ! filename ! inode # !
+        +--------------------+
+                        \
+                         .-------> ! permbits, etc ! addresses !
+                                   +---------inode-------------+
+                                                      /
+                                                     /
+                                                    /
+    .----------------------------------------------'
+   ( 
+    '-->  !"/path/to/some/other/file"! 
+          +---------data-------------+
+                  /                      }
+    .~ ~ ~ ~ ~ ~ ~                       }-- (redirected at open() time)
+   (                                     }
+    '~~> ! filename ! inode # !
+         +--------------------+
+                         \
+                          '------------> ! permbits, etc ! addresses !
+                                         +---------inode-------------+
+                                                            /
+                                                           /
+     .----------------------------------------------------'
+    (
+     '->  ! data !  ! data ! etc.
+          +------+  +------+ 
+
+Here, we see that although softlink.file accesses the same data as basic.file
+and hardlink.file, it does not share the same inode (73479 vs 73478), nor does
+it exhibit the same file permissions. It does show a new permission bit: the 'l'
+(softlink) bit.
+
+If we delete basic.file, then we lose the ability to access the linked data
+through the softlink. However, we still have access to the original data through
+the hardlink.

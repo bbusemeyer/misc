@@ -1,1 +1,45 @@
-/home/brian/tools/mycommands.sty
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{mycommands}
+
+% Now paste your code from the preamble here
+\newcommand{\lt}[0]{\left}
+\newcommand{\rt}[0]{\right}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\tbf}[1]{\textbf{#1}}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\Bra}[1]{\left\langle #1 \right|}
+\newcommand{\Ket}[1]{\left| #1 \right\rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\Braket}[2]{\left\langle #1 ~ \rt| \lt. #2 \right\rangle}
+\newcommand{\braKet}[2]{\left\langle #1 \rt. \lt| ~ #2 \right\rangle}
+\newcommand{\del}[0]{\nabla}
+\newcommand{\pt}[0]{\partial}
+\newcommand{\from}[0]{\leftarrow}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+\newcommand{\mca}[1]{\mathcal{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mtx}[1]{\mathrm{#1}}
+\newcommand{\vphi}[0]{\varphi}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vep}{\varepsilon}
+\newcommand{\abr}[1]{\langle #1 \rangle}
+\newcommand{\Abr}[1]{\left \langle #1 \right \rangle}
+\newcommand{\erf}[0]{\mathrm{erf}}
+\newcommand{\up}[0]{\uparrow}
+\newcommand{\dn}[0]{\downarrow}
+\newcommand{\sech}[0]{\mathrm{sech}\,}
+\newcommand{\csch}[0]{\mathrm{csch}\,}
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput
+
+Place in:
+
+/usr/share/texlive/texmf-dist/tex/latex/mycommands.sty
+
+run commands: mktexlsr

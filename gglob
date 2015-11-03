@@ -1,1 +1,9 @@
-/home/brian/tools/gglob
+#!/bin/bash
+
+grep '<' $1 | \
+ cut -d' ' -f2 | \
+ sed "s:.*:${2}/& ${3}/&:"
+
+grep '>' $1 | \
+ cut -d' ' -f2 | \
+ sed "s:.*:${2}/& ${3}/&:"

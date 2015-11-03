@@ -1,1 +1,94 @@
-/home/brian/tools/torque
+Useful links:
+
+https://wiki.archlinux.org/index.php/TORQUE
+
+1. Install torque-server and torque-mom
+
+2. Check /etc/hosts/ for hostnames, or use 'host'
+
+3. Put hostname in /var/spool/torque/server_name
+
+4. Run pbs_server -t create
+
+5. Use the following to set things:
+
+qmgr -c "set server acl_hosts = <hostname>"
+qmgr -c "set server scheduling=true"
+qmgr -c "create queue batch queue_type=execution"
+qmgr -c "set queue batch started=true"
+qmgr -c "set queue batch enabled=true"
+qmgr -c "set queue batch resources_default.nodes=1"
+qmgr -c "set queue batch resources_default.walltime=3600"
+qmgr -c "set server default_queue=batch"
+
+6. Add nodes to /var/spool/torque/server_priv/nodes
+
+mars np=4
+phobos np=2
+deimos np=2
+
+7. Restart everything.
+
+8. To start running jobs, use 'pbs_sched', 'pbs_mom'.
+
+9. 'pbsnodes -a' to check on things.
+
+This doesn't work for me anymore.
+
+
+Trying downloading the tarball...
+
+Reference:
+http://ubuntuforums.org/showthread.php?t=289767
+
+sudo apt-get install libxml2-dev libssl-dev libboost-dev
+
+configure
+
+make
+
+sudo su
+
+make install
+
+# This may be causing server to be called "localhost" by default.
+torque.setup brian
+
+cd /var/spool/torque
+
+# Make sure /etc/hosts has hostname in it. Workaround: use alias for localhost.
+
+echo "veritas" > /var/spool/torque/server_name
+
+pbsserver -t create
+
+trqauthd
+
+qmgr -c "set server acl_hosts = veritas"
+qmgr -c "set server scheduling=true"
+qmgr -c "create queue batch queue_type=execution"
+qmgr -c "set queue batch started=true"
+qmgr -c "set queue batch enabled=true"
+qmgr -c "set queue batch resources_default.nodes=1"
+qmgr -c "set queue batch resources_default.walltime=3600"
+qmgr -c "set server default_queue=batch"
+qmgr -c "set server keep_completed = 86400"
+
+echo "veritas np=8" > /var/spool/torque/server_priv/nodes
+
+echo "pbsserver veritas" > /var/spool/torque/mom_priv/config
+echo "logevent 255" > /var/spool/torque/mom_priv/config
+
+killall -s 9 pbs_server
+pbs_server
+
+pbs_mom
+
+# To check:
+pbsnodes -a
+# If node is down, there's a problem with /etc/hosts, try using aliases or
+# renaming.
+
+pbs_sched
+
+# Now everything should be working!
