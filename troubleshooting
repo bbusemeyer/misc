@@ -14,3 +14,41 @@ remove expandtab, etc. line from /usr/share/vim/vim74/ftplugin/python.vim
 =======================================================================
 
 To get latex to position table elements correctly: \raisebox{-0.5\height}
+
+=======================================================================
+
+Get globus to allow a directory:
+
+(1) Use the GUI and look over the options.
+(2) Command line: you must configure the ~/.globusonline/lta/config-paths file.
+
+This file is a plain text file, with each line corresponding to the
+configuration of a particular directory path you wish to make accessible
+
+By default, a ~/.globusonline/lta/config-paths file that looks like this will be
+generated the first time Globus Connect Personal for Linux is run:
+
+~/,0,1
+
+This configuration tells Globus Connect Personal to make the user’s home
+directory accessible, and to make it read/write in terms of the ability to do
+Globus transfers. If we wanted to configure the user’s home directory to be read
+only with respect to the ability to do Globus transfers we could change
+config-paths like so: 
+
+~/,0,0
+
+If the user wishes to make additional directories accessible, then each new top
+level path must be given its own line in the ~/.globusonline/lta/config-paths
+file. For example, if the user wanted to enable Globus Connect Personal to
+access the /data/tables directory then they would add the following line to
+their config-paths file:
+
+/data/tables,0,1
+
+After making a change to the ~/.globusonline/lta/config-paths file you must stop
+and restart Globus Connect Personal like so before the changes will take effect:
+
+./globusconnectpersonal -stop
+
+./globusconnectpersonal -start &
