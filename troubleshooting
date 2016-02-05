@@ -10,3 +10,7 @@ and playback solves the problem.
 To get vim to stop messing with python files:
 
 remove expandtab, etc. line from /usr/share/vim/vim74/ftplugin/python.vim
+
+=======================================================================
+
+To get latex to position table elements correctly: \raisebox{-0.5\height}

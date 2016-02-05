@@ -92,3 +92,6 @@ pbsnodes -a
 pbs_sched
 
 # Now everything should be working!
+
+# To configure the scheduling policy:
+sudo vi /var/spool/torque/sched_priv/sched_config
