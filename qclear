@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+  then
+    qdel `qstat -a | grep \ Q\  | cut -d'.' -f1`
+    qdel `qstat -a | grep \ R\  | cut -d'.' -f1`
+    qdel `qstat -a | grep \ H\  | cut -d'.' -f1`
+else
+  for var in "$@"
+  do
+      qdel `qstat -a | grep $var  | cut -d'.' -f1` 
+  done
+fi
