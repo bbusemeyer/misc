@@ -1,0 +1,12 @@
+#!/usr/bin/python2.7
+# Copy fn to old.fn, but first copy old.fn to old.old.fn, etc.
+import shutil as sh
+import os
+import sys
+fn = sys.argv[1]
+prefix = "old."
+while os.path.isfile(prefix+fn):
+  prefix += "old."
+while prefix != "":
+  sh.copy(prefix[4:]+fn,prefix+fn)
+  prefix = prefix[4:]
