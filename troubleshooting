@@ -52,3 +52,17 @@ and restart Globus Connect Personal like so before the changes will take effect:
 ./globusconnectpersonal -stop
 
 ./globusconnectpersonal -start &
+
+===========================================
+
+git pull a new branch to a new branch.
+
+git checkout -b name source/sourcename
+
+===========================================
+
+Getting two python versions to work on various things.
+
+Just install everything with python3, and use anaconda2 to get a second set of
+executibles seperate from python3, such as pip. Call these pip2, etc. and use
+these to install python2 libraries and such.
