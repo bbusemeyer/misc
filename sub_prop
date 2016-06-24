@@ -1,0 +1,15 @@
+#!/bin/bash
+n=1
+
+echo "
+#PBS -l nodes=1:ppn=$n
+#PBS -l walltime=300:00:00
+#PBS -j oe
+#PBS -m n
+#PBS -N $1
+#PBS -o qsub.out
+cd \${PBS_O_WORKDIR}
+
+/home/brian/bin/properties < $1  >& $1.out
+echo \`date '+%a %F %T'\` \`pwd\` $1 >> ~/completed_jobs
+";
