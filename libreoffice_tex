@@ -1,0 +1,6 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[usenames]{color}
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{3.5in}
+\renewcommand{\familydefault}{\sfdefault}
