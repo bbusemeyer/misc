@@ -164,7 +164,7 @@ cd_func ()
 alias cd=cd_func
 
 # Add sources to path.
-export PATH=/home/brian/tools/mython:$PATH
+export PATH=/home/brian/tools/busempyer:$PATH
 export PATH=/home/brian/tools:$PATH
 export PATH=~/programs/mathematica/Executables:$PATH
 export PATH=~/programs/espresso-5.1.1/bin:$PATH
@@ -175,7 +175,7 @@ export PATH=.:$PATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils/autogen:$PYTHONPATH
-export PYTHONPATH=/home/brian/tools/mython:$PYTHONPATH
+export PYTHONPATH=/home/brian/tools/busempyer:$PYTHONPATH
 export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.
