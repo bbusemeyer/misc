@@ -1,8 +1,5 @@
 vim
 ssh
-python-numpy
-python-matplotlib
-python-scipy
 texlive-publishers
 texlive-latex-base
 texlive-latex-recommended
@@ -20,7 +17,10 @@ pdftk
 mcrypt
 ipython
 mercurial
-ttf-mscorefonts-installer
 git
 python-pip
+python3-dev
+python3-setuptools
+libfreetype6
 gfortran
+ttf-mscorefonts-installer
