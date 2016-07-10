@@ -1,6 +1,7 @@
 numpy
 scipy
 matplotlib
+pandas
 seaborn
 sklearn
 pymatgen
