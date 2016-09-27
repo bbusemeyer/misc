@@ -10,7 +10,7 @@ outlines = [
     "#PBS -j oe",
     "#PBS -m n",
     "#PBS -N %s"%inpfn,
-    "#PBS -o %s.out"%inpfn,
+    "#PBS -o qsub.out",
     "cd ${PBS_O_WORKDIR}",
     "nice -n 5 mpirun -np 8 /home/brian/bin/qwalk {0} >& {0}.out".format(inpfn),
   ]

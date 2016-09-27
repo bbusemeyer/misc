@@ -20,7 +20,7 @@ pdftk
 mcrypt
 ipython
 mercurial
-ttf-mscorefonts-installer
-git
-python-pip
 gfortran
+python-setuptools
+libfreetype6-dev
+gparted
