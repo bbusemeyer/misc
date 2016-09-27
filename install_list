@@ -1,8 +1,5 @@
 vim
 ssh
-python-numpy
-python-matplotlib
-python-scipy
 texlive-publishers
 texlive-latex-base
 texlive-latex-recommended
@@ -24,3 +21,10 @@ gfortran
 python-setuptools
 libfreetype6-dev
 gparted
+git
+python-pip
+python3-dev
+python3-setuptools
+libfreetype6
+gfortran
+ttf-mscorefonts-installer
