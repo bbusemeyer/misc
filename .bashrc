@@ -174,7 +174,6 @@ export PATH=~/bin:$PATH
 export PATH=/opt/intel/bin:$PATH
 export PATH=.:$PATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
-export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils/autogen:$PYTHONPATH
 export PYTHONPATH=/home/brian/tools/busempyer:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs:$PYTHONPATH
@@ -182,3 +181,13 @@ export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.
 export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
+
+# Intel compiler variables.
+#source /opt/intel/bin/compilervars.sh intel64
+#source /opt/intel/bin/ifortvars.sh intel64
+
+# My own library control.
+source ~/tools/misc/start_lib_control
+
+# Activate modules.
+source /etc/profile.d/modules.sh

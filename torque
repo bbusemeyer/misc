@@ -12,14 +12,13 @@ apt-get install torque-server torque-client torque-mom torque-pam
 /etc/init.d/torque-scheduler stop
 /etc/init.d/torque-server stop
 pbs_server -t create
-
 killall pbs_server
 
 echo localhost > /etc/torque/server_name
 echo localhost > /var/spool/torque/server_priv/acl_svr/acl_hosts
 echo root@localhost > /var/spool/torque/server_priv/acl_svr/operators
 echo root@localhost > /var/spool/torque/server_priv/acl_svr/managers
-echo "localhost np=4" > /var/spool/torque/server_priv/nodes
+echo "localhost np=8" > /var/spool/torque/server_priv/nodes
 echo localhost > /var/spool/torque/mom_priv/config
 
 /etc/init.d/torque-server start

@@ -17,6 +17,10 @@ pdftk
 mcrypt
 ipython
 mercurial
+gfortran
+python-setuptools
+libfreetype6-dev
+gparted
 git
 python-pip
 python3-dev

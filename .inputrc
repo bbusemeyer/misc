@@ -65,4 +65,7 @@ $endif
 # "\e[F": end-of-line
 
 $endif
+
+# Brian's personalization.
 set mark-symlinked-directories on
+set expand-tilde on
