@@ -171,11 +171,13 @@ export PATH=~/programs/espresso-5.1.1/bin:$PATH
 export PATH=~/programs/vesta:$PATH
 export PATH=~/tools:$PATH
 export PATH=~/bin:$PATH
+export PATH=/opt/intel/bin:$PATH
 export PATH=.:$PATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils/autogen:$PYTHONPATH
 export PYTHONPATH=/home/brian/tools/busempyer:$PYTHONPATH
+export PYTHONPATH=/home/brian/programs:$PYTHONPATH
 export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.

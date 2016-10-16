@@ -4,8 +4,9 @@ alias grep='grep --color'  # show differences in colour
 alias l='less -r'
 alias R='R -q'
 alias mkddir='mkdir `date "+%F"`'
-alias py='python -u'
-alias py3='python3.4 -u'
+alias py='python3 -u'
+alias py2='python2 -u'
+alias py3='python3.5 -u'
 alias python='python -u'
 alias gpp='g++'
 alias tp='trash-put'
@@ -15,8 +16,11 @@ alias mcrypt='mcrypt -u'
 alias ppl='python ~/tools/plotter.py'
 alias rsync='rsync --progress'
 alias qs='qstat -a'
-alias notebook="google-chrome; ipython notebook"
+alias notebook="google-chrome; jupyter notebook"
 alias update="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
+
+# Spelling fixes.
+alias dc="sl"
 
 # tools shortcuts
 alias rr='~/tools/record_run.sh'
