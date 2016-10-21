@@ -8,5 +8,5 @@ prefix = "old."
 while os.path.isfile(prefix+fn):
   prefix += "old."
 while prefix != "":
-  sh.copy(prefix[4:]+fn,prefix+fn)
+  sh.move(prefix[4:]+fn,prefix+fn)
   prefix = prefix[4:]

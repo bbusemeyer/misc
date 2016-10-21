@@ -143,4 +143,6 @@ if v:version < 704
   autocmd BufRead,BufNewFile *.jl    let b:undo_ftplugin = "setlocal comments< define< formatoptions< iskeyword< lisp<"
 endif
 autocmd BufRead,BufNewFile *.jl      set filetype=julia
+
+autocmd Filetype tex setlocal tw=0 wrap spell
 set omnifunc=LaTeXtoUnicode#omnifunc
