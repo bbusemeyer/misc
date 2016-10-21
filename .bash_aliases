@@ -17,8 +17,11 @@ alias mcrypt='mcrypt -u'
 alias ppl='python ~/tools/plotter.py'
 alias rsync='rsync --progress'
 alias qs='qstat -a'
-alias notebook="google-chrome; ipython notebook"
+alias notebook="google-chrome; jupyter notebook"
 alias update="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
+
+# Spelling fixes.
+alias dc="sl"
 
 # tools shortcuts
 alias rr='~/tools/record_run.sh'
