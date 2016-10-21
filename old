@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python3
 # Copy fn to old.fn, but first copy old.fn to old.old.fn, etc.
 import shutil as sh
 import os
