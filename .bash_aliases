@@ -30,6 +30,12 @@ alias cscp='~/tools/cs_scp.sh'
 alias csftp='~/tools/cs_sftp.sh'
 alias ry='~/tools/recycle.sh'
 
+# git shortcuts.
+alias gs='git status'
+alias gc='git commit'
+alias gp='git push'
+alias ga='git add'
+
 # Globus Endpoints.
 gmira='alcf#dtn_mira'
 gtaub='illinois#iccp'
