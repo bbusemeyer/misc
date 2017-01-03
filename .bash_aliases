@@ -1,4 +1,5 @@
 alias less='less -r'       # raw control characters
+alias vi=vim
 alias whence='type -a'     # where, of a sort
 alias grep='grep --color'  # show differences in colour
 alias l='less -r'
