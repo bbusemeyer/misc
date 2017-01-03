@@ -1,0 +1,9 @@
+#!/bin/bash
+
+location='/media/internal_hdd'
+drive='/dev/sdb1'
+type='ext'
+
+cp /etc/fstab /etc/old.fstab
+mkdir $location
+echo "$drive $location $type defaults 0 0" >> /etc/fstab
