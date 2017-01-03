@@ -17,6 +17,7 @@ alias mcrypt='mcrypt -u'
 alias ppl='python ~/tools/plotter.py'
 alias rsync='rsync --progress'
 alias qs='qstat -a'
+alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \ C\ "'
 alias notebook="google-chrome; jupyter notebook"
 alias update="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
 
@@ -36,13 +37,16 @@ alias ry='~/tools/recycle.sh'
 # git shortcuts.
 alias gs='git status'
 alias gc='git commit'
+alias gd='git diff'
 alias gp='git push'
 alias ga='git add'
 
-# Globus Endpoints.
+# Globus shortcuts.
+globus='~/programs/globusconnectpersonal-2.3.3/globusconnect -start -restrict-paths rw~/,rw/media/internal_hdd/'
 gmira='alcf#dtn_mira'
 gtaub='illinois#iccp'
 glap='busemey2#laptop'
+gver='veritas'
 
 # Ma's local ip's
 desktop2='192.168.2.102'

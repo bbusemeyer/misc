@@ -191,3 +191,6 @@ source ~/tools/misc/start_lib_control
 
 # Activate modules.
 source /etc/profile.d/modules.sh
+
+# Empty trash.
+rm -rf /media/internal_hdd/.Trash

@@ -145,4 +145,5 @@ endif
 autocmd BufRead,BufNewFile *.jl      set filetype=julia
 
 autocmd Filetype tex setlocal tw=0 wrap spell
+autocmd Filetype md  setlocal tw=0 wrap spell
 set omnifunc=LaTeXtoUnicode#omnifunc
