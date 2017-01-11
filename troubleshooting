@@ -66,3 +66,17 @@ Getting two python versions to work on various things.
 Just install everything with python3, and use anaconda2 to get a second set of
 executibles seperate from python3, such as pip. Call these pip2, etc. and use
 these to install python2 libraries and such.
+
+===========================================
+
+# Getting spotify onto Fedora:
+
+dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
+dnf install spotify-client
+
+# Fix bug with segfault.
+
+wget <latest spotify deb>
+ar -x spotify-client.deb
+tar xzf data.tar.gz
+sudo cp -r usr/share/spotify/* /lib64/spotify-client/
