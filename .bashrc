@@ -173,6 +173,7 @@ export PATH=~/tools:$PATH
 export PATH=~/bin:$PATH
 export PATH=/opt/intel/bin:$PATH
 export PATH=.:$PATH
+export PYTHONPATH=/home/brian/programs:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils/autogen:$PYTHONPATH
 export PYTHONPATH=/home/brian/tools/busempyer:$PYTHONPATH
