@@ -38,6 +38,7 @@ alias gs='git status'
 alias gc='git commit'
 alias gp='git push'
 alias ga='git add'
+alias gd='git diff'
 
 # Globus Endpoints.
 gmira='alcf#dtn_mira'
