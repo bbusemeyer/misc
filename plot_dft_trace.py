@@ -12,4 +12,6 @@ print(dmin)
 print("Min: %f."%dmin)
 dat['totenergy'] -= dmin
 plt.plot(dat['totenergy'])
+plt.ylabel('Total Energy (Ha)')
+plt.xlabel('SCF cycle')
 plt.show()

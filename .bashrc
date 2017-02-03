@@ -173,6 +173,7 @@ export PATH=~/tools:$PATH
 export PATH=~/bin:$PATH
 export PATH=/opt/intel/bin:$PATH
 export PATH=.:$PATH
+export PYTHONPATH=/home/brian/programs:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=/home/brian/programs/qwalk/utils/autogen:$PYTHONPATH
 export PYTHONPATH=/home/brian/tools/busempyer:$PYTHONPATH
@@ -190,4 +191,4 @@ export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
 #source ~/tools/misc/start_lib_control
 
 # Activate modules.
-#source /etc/profile.d/modules.sh
+source /etc/profile.d/modules.sh
