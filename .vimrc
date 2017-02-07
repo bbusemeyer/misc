@@ -111,7 +111,7 @@ endif
 hi Folded ctermfg=245
 hi Folded ctermbg=white
 
-autocmd BufWinLeave * mkview
+"autocmd BufWinLeave * mkview
 "autocmd BufWinEnter * silent loadview 
 
 " # Function to permanently delete views created by 'mkview'
