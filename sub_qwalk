@@ -14,12 +14,12 @@ else:                 time = sys.argv[3]+":00:00"
 if len(sys.argv) < 3: queue = "secondary"
 else:                 queue = sys.argv[2],
 if (len(sys.argv) < 2) or (len(sys.argv) > 6):
-  print("Useage: sub_qwalk crystal_input queue time_in_hours nn np")
+  print("Useage: sub_qwalk input queue time_in_hours nn np")
   print("Leaving out values generates defaults.")
   raise AssertionError("Bad input")
 
 inpfn = sys.argv[1]
-prep = ["module load openmpi/1.4-gcc+ifort"]
+prep = []
 post=[]
 
 qsub = my.gen_qsub(

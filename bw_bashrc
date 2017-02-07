@@ -1,1 +1,7 @@
 source ~/tools/misc/base_bashrc
+
+# Path definitions.
+export PYTHONPATH=~/tools/busempyer:$PYTHONPATH
+
+# Modules.
+module load bwpy
