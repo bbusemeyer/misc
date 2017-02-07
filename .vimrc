@@ -111,7 +111,7 @@ endif
 hi Folded ctermfg=245
 hi Folded ctermbg=white
 
-autocmd BufWinLeave * mkview
+"autocmd BufWinLeave * mkview
 "autocmd BufWinEnter * silent loadview 
 
 " # Function to permanently delete views created by 'mkview'
@@ -145,4 +145,5 @@ endif
 autocmd BufRead,BufNewFile *.jl      set filetype=julia
 
 autocmd Filetype tex setlocal tw=0 wrap spell
+autocmd Filetype md  setlocal tw=0 wrap spell
 set omnifunc=LaTeXtoUnicode#omnifunc
