@@ -63,5 +63,7 @@ ver='brian@128.174.249.177'
 mira='busemey@mira.alcf.anl.gov'
 # Globus CLI
 glob='busemey2@cli.globusonline.org'
+# Blue Waters.
+bw='busemeye@bw.ncsa.illinois.edu'
 
 backuplist='./Desktop ./Pictures ./Documents ./homework ./programs ./Music ./projects ./tools ./.bash* ./.*rc .matplotlib/'
