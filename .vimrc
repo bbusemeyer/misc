@@ -148,3 +148,13 @@ autocmd Filetype tex setlocal tw=0 wrap spell
 autocmd Filetype txt setlocal tw=0 wrap spell
 autocmd Filetype md  setlocal tw=0 wrap spell
 set omnifunc=LaTeXtoUnicode#omnifunc
+
+" Fix python fuck around.
+function! SetupPython()
+    " Here, you can have the final say on what is set.  So
+    " fixup any settings you don't like.
+    setlocal softtabstop=2
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+endfunction
+command! -bar SetupPython call SetupPython()
