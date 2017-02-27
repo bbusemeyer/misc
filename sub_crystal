@@ -15,7 +15,7 @@ outlines = [
     "#PBS -l walltime=%s"%time,
     "#PBS -j oe",
     "#PBS -m n",
-    "#PBS -N %s"%inpfn,
+    "#PBS -N %s"%os.getcwd().split('/')[-1],
     "#PBS -o test.out",
     "cd %s"%cwd
   ]

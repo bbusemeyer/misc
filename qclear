@@ -1,12 +1,12 @@
 #!/bin/bash
 if [ $# -eq 0 ]
   then
-    qdel `qstat -u busemey2 | grep \ Q\  | cut -d'.' -f1`
-    qdel `qstat -u busemey2 | grep \ R\  | cut -d'.' -f1`
-    qdel `qstat -u busemey2 | grep \ H\  | cut -d'.' -f1`
+    qdel `qstat -u brian | grep \ Q\  | cut -d'.' -f1`
+    qdel `qstat -u brian | grep \ R\  | cut -d'.' -f1`
+    qdel `qstat -u brian | grep \ H\  | cut -d'.' -f1`
 else
   for var in "$@"
   do
-      qdel `qstat -u busemey2 | grep $var  | cut -d'.' -f1` 
+      qdel `qstat -u brian | grep $var  | cut -d'.' -f1` 
   done
 fi

@@ -5,3 +5,4 @@
 \setlength{\parindent}{0in}
 \setlength{\textwidth}{3.5in}
 \renewcommand{\familydefault}{\sfdefault}
+\usepackage[none]{hyphenat}
