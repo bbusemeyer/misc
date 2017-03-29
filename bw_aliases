@@ -1,4 +1,5 @@
 alias less='less -r'       # raw control characters
+alias vi=vim
 alias whence='type -a'     # where, of a sort
 alias grep='grep --color'  # show differences in colour
 alias l='less -r'
@@ -6,7 +7,6 @@ alias R='R -q'
 alias mkddir='mkdir `date "+%F"`'
 alias py='python3 -u'
 alias py2='python2 -u'
-#alias rm='rm -i'
 alias tra='trash'
 #alias python='python3 -u'
 alias gpp='g++'
@@ -40,6 +40,7 @@ alias gc='git commit'
 alias gd='git diff'
 alias gp='git push'
 alias ga='git add'
+alias gd='git diff'
 
 # Globus shortcuts.
 globus='~/programs/globusconnectpersonal-2.3.3/globusconnect -start -restrict-paths rw~/,rw/media/internal_hdd/'
@@ -62,5 +63,7 @@ ver='brian@128.174.249.177'
 mira='busemey@mira.alcf.anl.gov'
 # Globus CLI
 glob='busemey2@cli.globusonline.org'
+# Blue Waters.
+bw='busemeye@bw.ncsa.illinois.edu'
 
 backuplist='./Desktop ./Pictures ./Documents ./homework ./programs ./Music ./projects ./tools ./.bash* ./.*rc .matplotlib/'
