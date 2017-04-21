@@ -17,6 +17,7 @@ alias mcrypt='mcrypt -u'
 alias ppl='python ~/tools/plotter.py'
 alias rsync='rsync --progress'
 alias qs='qstat -a'
+alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \ C\ "'
 alias notebook="google-chrome; jupyter notebook"
 alias update="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
 
@@ -40,10 +41,12 @@ alias gp='git push'
 alias ga='git add'
 alias gd='git diff'
 
-# Globus Endpoints.
+# Globus shortcuts.
+globus='~/programs/globusconnectpersonal-2.3.3/globusconnect -start -restrict-paths rw~/,rw/media/internal_hdd/'
 gmira='alcf#dtn_mira'
 gtaub='illinois#iccp'
 glap='busemey2#laptop'
+gver='veritas'
 
 # Ma's local ip's
 desktop2='192.168.2.102'
@@ -59,5 +62,7 @@ ver='brian@128.174.249.177'
 mira='busemey@mira.alcf.anl.gov'
 # Globus CLI
 glob='busemey2@cli.globusonline.org'
+# Blue Waters.
+bw='busemeye@bw.ncsa.illinois.edu'
 
 backuplist='./Desktop ./Pictures ./Documents ./homework ./programs ./Music ./projects ./tools ./.bash* ./.*rc .matplotlib/'

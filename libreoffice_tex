@@ -6,3 +6,4 @@
 \setlength{\textwidth}{3.5in}
 \usepackage[none]{hyphenat}
 \renewcommand{\familydefault}{\sfdefault}
+\usepackage[none]{hyphenat}
