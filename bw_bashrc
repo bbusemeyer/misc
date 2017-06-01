@@ -5,3 +5,4 @@ export PYTHONPATH=~/tools/busempyer:$PYTHONPATH
 
 # Modules.
 module load bwpy
+module swap PrgEnv-cray PrgEnv-gnu; module load acml; module load cblas

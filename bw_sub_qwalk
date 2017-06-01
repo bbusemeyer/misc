@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+import sys
+import subprocess as sub
+import os
+import mython as my
+
+assert len(sys.argv)>=4,"""
+  Usage: sub_qwalk [num nodes] [time string] [list of input files]
+  """
+
+nnodes=int(sys.argv[1])
+nprocs=16*nnodes
+time=sys.argv[2]
+inpfns=' '.join(sys.argv[3:])
+
+name="%s.%s"%(os.getcwd().split('/')[-1],sys.argv[-1])
+if len(sys.argv[3:])>1:
+  name='bundle'
+
+outlines = [
+    "#!/bin/bash",
+    "#PBS -l nodes=%d:ppn=16"%nnodes,
+    "#PBS -l walltime=%s"%time,
+    "#PBS -j oe",
+    "#PBS -m n",
+    "#PBS -A bahu",
+    "#PBS -N %s"%name,
+    "#PBS -o %s.qsub.out"%name,
+    "cd %s"%os.getcwd(),
+    "module swap PrgEnv-cray PrgEnv-gnu",
+    "module load acml",
+    "module load cblas",
+    "aprun -n %d ~/bin/qwalk %s &> %s.out"%(nprocs,inpfns,name),
+  ]
+
+with open('qsub.in','w') as outf:
+  outf.write('\n'.join(outlines))
+
+print(sub.check_output("qsub qsub.in",shell=True).decode())
