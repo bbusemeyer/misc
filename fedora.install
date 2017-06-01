@@ -8,3 +8,7 @@ dvipng
 redhat-rpm-config
 python3-devel
 python3-tools
+gcc-c++
+openmpi-devel
+lapack-devel
+blas-devel

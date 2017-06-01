@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in */record.json
+do
+  ln -s -v `pwd`/${i} alljsons/${i/\//.}
+done

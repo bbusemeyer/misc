@@ -1,0 +1,62 @@
+# Use: git config --global core.excludesfile ~/.gitignore_global
+############################ Images
+*.eps
+*.png
+*.pdf
+*.jpg
+*.gif
+*.png
+*.svg
+*.ico
+
+############################ CPP tmp and object files
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+########################### Python cache
+__pycache___
+*.pyc
+
+########################### Latex tmp files
+*.bbl
+*.blg
+*.log
+*.aux
+*.toc
+
+########################### Compression and storage
+*.tgz
+*.tar
+*.gz
+*.pkl
+*.pickle

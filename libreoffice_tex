@@ -1,8 +1,10 @@
+\setlength{\textwidth}{3.5in}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[usenames]{color}
 \usepackage{mhchem}
 \setlength{\parindent}{0in}
-\setlength{\textwidth}{3.5in}
 \usepackage[none]{hyphenat}
 \renewcommand{\familydefault}{\sfdefault}
+\usepackage[none]{hyphenat}
+\usepackage{mycommands}

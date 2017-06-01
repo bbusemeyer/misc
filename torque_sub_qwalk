@@ -6,7 +6,7 @@ import mython as my
 
 
 if len(sys.argv) < 6: np = "allprocs"
-else:                 np = sys.argv[5]
+else:                 np = int(sys.argv[5])
 if len(sys.argv) < 5: nn = 1
 else:                 nn = int(sys.argv[4])
 if len(sys.argv) < 4: time = "4:00:00"
