@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import sys
+import subprocess as sub
+import os
+import mython as my
+
+
+if len(sys.argv) < 6: np = "allprocs"
+else:                 np = int(sys.argv[5])
+if len(sys.argv) < 5: nn = 1
+else:                 nn = int(sys.argv[4])
+if len(sys.argv) < 4: time = "4:00:00"
+else:                 time = sys.argv[3]+":00:00"
+if len(sys.argv) < 3: queue = "secondary"
+else:                 queue = sys.argv[2],
+if (len(sys.argv) < 2) or (len(sys.argv) > 6):
+  print("Useage: sub_qwalk input queue time_in_hours nn np")
+  print("Leaving out values generates defaults.")
+  raise AssertionError("Bad input")
+
+inpfn = sys.argv[1]
+assert nn==1,'Only works on one node for now.'
+prep = [
+    "export OMP_NUM_THREADS=%i"%(nn*np),
+    "export PYTHONPATH=%s"%(':'.join(sys.path))
+  ]
+post=[]
+
+qsub = my.gen_qsub(
+    exe = "python3 %s"%inpfn,
+    stdout = inpfn+".stdout",
+    time = time,
+    queue = queue,
+    name = os.getcwd().split("/")[-1],
+    nn = nn,
+    np = np,
+    prep_commands=prep,
+    final_commands=post
+  )
+
+print(sub.check_output("qsub %s"%qsub,shell=True).decode())
