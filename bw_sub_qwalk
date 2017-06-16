@@ -9,7 +9,7 @@ assert len(sys.argv)>=4,"""
   """
 
 nnodes=int(sys.argv[1])
-nprocs=16*nnodes
+nprocs=32*nnodes
 time=sys.argv[2]
 inpfns=' '.join(sys.argv[3:])
 
@@ -19,7 +19,7 @@ if len(sys.argv[3:])>1:
 
 outlines = [
     "#!/bin/bash",
-    "#PBS -l nodes=%d:ppn=16"%nnodes,
+    "#PBS -l nodes=%d:ppn=32:xe"%nnodes,
     "#PBS -l walltime=%s"%time,
     "#PBS -j oe",
     "#PBS -m n",
