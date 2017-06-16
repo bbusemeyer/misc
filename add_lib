@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+  echo "Usage: source add_lib < list of libs >"
+  echo "Path searches in order of list."
+  exit 1
+fi
+
+export LD_LIBRARY_PATH=`echo $@ | sed 's| |:|g'`:$LD_LIBRARY_PATH
