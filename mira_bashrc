@@ -1,0 +1,22 @@
+source ~/tools/misc/base_bashrc
+
+# Add sources to path.
+export PATH=/home/busemey/tools/busempyer:$PATH
+export PATH=/home/busemey/tools:$PATH
+export PATH=~/programs/mathematica/Executables:$PATH
+export PATH=~/programs/espresso-5.1.1/bin:$PATH
+export PATH=~/programs/vesta:$PATH
+export PATH=~/tools:$PATH
+export PATH=~/bin:$PATH
+export PATH=/opt/intel/bin:$PATH
+export PATH=.:$PATH
+export PYTHONPATH=/home/busemey/programs:$PYTHONPATH
+export PYTHONPATH=/home/busemey/programs/autogenv2:$PYTHONPATH
+export PYTHONPATH=/home/busemey/programs/qwalk/utils:$PYTHONPATH
+export PYTHONPATH=/home/busemey/programs/qwalk/utils/autogen:$PYTHONPATH
+export PYTHONPATH=/home/busemey/tools/busempyer:$PYTHONPATH
+export PYTHONPATH=/home/busemey/programs:$PYTHONPATH
+export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
+# Set mpirun debugger with use of -debug option.
+export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
