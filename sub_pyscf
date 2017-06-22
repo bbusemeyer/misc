@@ -26,8 +26,8 @@ prep = [
   ]
 post=[]
 
-qsub = my.gen_qsub(
-    exe = "python3 %s"%inpfn,
+qsub = my.gen_qsub_general(
+    exelines = ["python3 %s"%inpfn],
     stdout = inpfn+".stdout",
     time = time,
     queue = queue,
