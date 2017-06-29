@@ -27,8 +27,7 @@ prep = [
 post=[]
 
 qsub = my.gen_qsub_general(
-    exelines = ["python3 %s"%inpfn],
-    stdout = inpfn+".stdout",
+    exelines = ["python3 {0} &> {0}.stdout".format(inpfn)],
     time = time,
     queue = queue,
     name = os.getcwd().split("/")[-1],
