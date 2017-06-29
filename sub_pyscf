@@ -20,10 +20,14 @@ if (len(sys.argv) < 2) or (len(sys.argv) > 6):
 
 inpfn = sys.argv[1]
 assert nn==1,'Only works on one node for now.'
+
 prep = [
-    "export OMP_NUM_THREADS=%i"%(nn*np),
     "export PYTHONPATH=%s"%(':'.join(sys.path))
   ]
+if np != "allprocs": 
+  prep += [
+      "export OMP_NUM_THREADS=%i"%(nn*np),
+    ]
 post=[]
 
 qsub = my.gen_qsub_general(
