@@ -39,7 +39,7 @@ set expandtab      " use spaces instead of tabs
 set number         " numbers the lines
 set wildmenu       " tab completion
 set fdm=indent
-set tw=80
+set tw=0
 set t_Co=256
 
 "colorscheme delek
