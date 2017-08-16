@@ -2,31 +2,38 @@
 import sys
 import subprocess as sub
 import os
+import argparse
 import mython as my
 
-assert len(sys.argv)>=3,"""
-  Usage: sub_qwalk num_procs inpfiles
-  """
+dft='(=%(default)s)'
+parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
+parser.add_argument('inpfns',type=str,nargs='+',
+    help='QWalk input to be submitted.')
+parser.add_argument('-np',default=8,type=int,
+    help='Number of processors per node.'+dft)
+parser.add_argument('-nn',default=1,type=int,
+    help='Number of nodes.'+dft)
+parser.add_argument('-t',dest='time',default='500:00:00',type=str,
+    help='Time string.'+dft)
+parser.add_argument('-q',dest='queue',default='batch',type=str,
+    help='Queue.'+dft)
+args=parser.parse_args()
 
-nprocs=int(sys.argv[1])
-time='100:00:00'
-inpfns=' '.join(sys.argv[2:])
-
-name="%s.%s"%(os.getcwd().split('/')[-1],sys.argv[-1])
-if len(sys.argv[2:])>1:
-  name='bundle'
+if len(args.inpfns)==1:
+  name=args.inpfns[0]
+else:
+  name='qw_bundle'
 
 outlines = [
     "#!/bin/bash",
-    "#PBS -l nodes=1:ppn=%d"%nprocs,
-    "#PBS -l walltime=%s"%time,
-    "#PBS -j oe",
-    "#PBS -m n",
-    "#PBS -A bahu",
+    "#PBS -l nodes=%d:ppn=%d"%(args.nn,args.np),
+    "#PBS -l walltime=%s"%args.time,
     "#PBS -N %s"%name,
-    "#PBS -o %s.qsub.out"%name,
+    "#PBS -e $PBS_JOBID.err",
+    "#PBS -o $PBS_JOBID.out",
+    "#PBS -q %s"%args.queue,
     "cd %s"%os.getcwd(),
-    "mpirun -n %d ~/bin/qwalk %s &> %s.out"%(nprocs,inpfns,name),
+    "mpirun -n %d ~/bin/qwalk %s &> %s.out"%(args.nn*args.np,' '.join(args.inpfns),name),
   ]
 
 with open('qsub.in','w') as outf:

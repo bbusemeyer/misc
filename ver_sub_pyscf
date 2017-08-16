@@ -6,7 +6,7 @@ import os
 import mython as my
 
 dft='(=%(default)s)'
-parser=argparse.ArgumentParser("Submit a pyscf run.")
+parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
 parser.add_argument('inpfn',type=str,
     help='Python script to be submitted.')
 parser.add_argument('-np',default=8,type=int,
@@ -36,11 +36,11 @@ qsub_lines=[
     "export PYTHONPATH=%s"%(':'.join(sys.path)),
     "cd $PBS_O_WORKDIR",
     "export OMP_NUM_THREADS=%d"%(args.nn*args.np),
-    "mpirun -n {nt} /usr/local/bin/python {inp} > {inp}.stdout"\
+    "mpirun -n {nt} /usr/bin/python {inp} > {inp}.stdout"\
         .format(nt=args.nn*args.np,inp=args.inpfn),
   ]
 
 with open('qsub.in','w') as outf:
   outf.write('\n'.join(qsub_lines))
 
-print(sub.check_output("qsub qsub.in"%qsub,shell=True).decode())
+print(sub.check_output("qsub qsub.in",shell=True).decode())
