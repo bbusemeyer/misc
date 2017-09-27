@@ -9,7 +9,7 @@ dft='(=%(default)s)'
 parser=argparse.ArgumentParser("Submit a pyscf run.")
 parser.add_argument('inpfn',type=str,
     help='Python script to be submitted.')
-parser.add_argument('-np',default=16,type=int,
+parser.add_argument('-np',default=32,type=int,
     help='Number of processors per node.'+dft)
 parser.add_argument('-nn',default=1,type=int,
     help='Number of nodes.'+dft)
@@ -19,7 +19,7 @@ parser.add_argument('-q',dest='queue',default='normal',type=str,
     help='Queue.'+dft)
 args=parser.parse_args()
 
-assert args.nn==1, "Only tested on one node for now."
+#assert args.nn==1, "Only tested on one node for now."
 
 prep = [
     "export PYTHONPATH=%s"%(':'.join(sys.path))
@@ -40,14 +40,14 @@ qsub_lines=[
     "#PBS -o $PBS_JOBID.out",
     "#PBS -l gres=shifter",
     "#PBS -q %s"%args.queue,
-    "#PBS -v UDI=lkwagner/pyscf:latest",
+    "#PBS -v UDI=bbusemeyer/pyscf:latest",
     "",
     "# To add certain modules that you do not have added via ~/.modules",
     ". /opt/modules/default/init/bash",
     "",
     "cd $PBS_O_WORKDIR",
     "export CRAY_ROOTFS=UDI",
-    "export PYTHONPATH='/pyscf:/u/sciteam/lkwagner/autogenv2'",
+    "export PYTHONPATH='/pyscf:/u/sciteam/busemeye/programs/autogenv2'",
     "export OMP_NUM_THREADS=%d"%(args.nn*args.np),
     "aprun -N 1 -n {nn} -d {np} -b -- /usr/local/bin/python  {inp} > {inp}.stdout"\
         .format(nn=args.nn,np=args.np,inp=args.inpfn),
@@ -56,4 +56,4 @@ qsub_lines=[
 with open('qsub.in','w') as outf:
   outf.write('\n'.join(qsub_lines))
 
-#print(sub.check_output("qsub qsub.in"%qsub,shell=True).decode())
+print(sub.check_output("qsub qsub.in",shell=True).decode())
