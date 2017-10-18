@@ -4,30 +4,35 @@ import subprocess as sub
 import os
 import argparse
 
-assert len(sys.argv)==4,"""
-  Usage: sub_crystal [num nodes] [time string] [input file]
-  """
-
-nnodes=int(sys.argv[1])
-nprocs=16*nnodes
-time=sys.argv[2]
-inpfn=sys.argv[3]
+dft='(=%(default)s)'
+parser=argparse.ArgumentParser("Submit a pyscf run.")
+parser.add_argument('inpfn',type=str,
+    help='Python script to be submitted.')
+parser.add_argument('-np',default=32,type=int,
+    help='Number of processors per node.'+dft)
+parser.add_argument('-nn',default=1,type=int,
+    help='Number of nodes.'+dft)
+parser.add_argument('-t',dest='time',default='48:00:00',type=str,
+    help='Time string.'+dft)
+parser.add_argument('-q',dest='queue',default='normal',type=str,
+    help='Queue.'+dft)
+args=parser.parse_args()
 
 name="%s.%s"%(os.getcwd().split('/')[-1],sys.argv[-1])
 
 outlines = [
     "#!/bin/bash",
-    "#PBS -l nodes=%d:ppn=16"%nnodes,
-    "#PBS -l walltime=%s"%time,
-    "#PBS -j oe",
-    "#PBS -m n",
+    "#PBS -l nodes=%d:ppn=%d:xe"%(args.nn,args.np),
+    "#PBS -l walltime=%s"%args.time,
     "#PBS -A bahu",
-    "#PBS -q debug",
-    "#PBS -N %s"%name,
-    "#PBS -o %s.qsub.out"%name,
+    "#PBS -N %s"%args.inpfn,
+    "#PBS -e $PBS_JOBID.err",
+    "#PBS -o $PBS_JOBID.out",
+    "#PBS -q %s"%args.queue,
     "cd %s"%os.getcwd(),
-    "cp %s INPUT"%inpfn,
-    "aprun -n %d ~/bin/Pcrystal &> %s.out"%(nprocs,name)
+    "cp %s INPUT"%args.inpfn,
+    "aprun -n %d ~/bin/Pcrystal &> %s.out"%(args.nn*args.np,args.inpfn),
+    "rm *.pe[0-9] *.pe[0-9][0-9]"
   ]
 with open("qsub.in",'w') as outf:
   outf.write('\n'.join(outlines))

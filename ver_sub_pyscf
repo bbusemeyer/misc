@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 import sys
 import subprocess as sub
+import argparse 
 import os
-import argparse
 import mython as my
 
 dft='(=%(default)s)'
 parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
-parser.add_argument('inpfns',type=str,nargs='+',
-    help='QWalk input to be submitted.')
+parser.add_argument('inpfn',type=str,
+    help='Python script to be submitted.')
 parser.add_argument('-np',default=8,type=int,
     help='Number of processors per node.'+dft)
 parser.add_argument('-nn',default=1,type=int,
@@ -19,24 +19,28 @@ parser.add_argument('-q',dest='queue',default='batch',type=str,
     help='Queue.'+dft)
 args=parser.parse_args()
 
-if len(args.inpfns)==1:
-  name=args.inpfns[0]
-else:
-  name='qw_bundle'
+assert args.nn==1, "Only tested on one node for now."
 
-outlines = [
+qsub_lines=[
     "#!/bin/bash",
     "#PBS -l nodes=%d:ppn=%d"%(args.nn,args.np),
     "#PBS -l walltime=%s"%args.time,
-    "#PBS -N %s"%name,
+    "#PBS -N %s"%args.inpfn,
     "#PBS -e $PBS_JOBID.err",
     "#PBS -o $PBS_JOBID.out",
     "#PBS -q %s"%args.queue,
-    "cd %s"%os.getcwd(),
-    "mpirun -n %d ~/bin/qwalk %s &> %s.out"%(args.nn*args.np,' '.join(args.inpfns),name),
+    "",
+    "# To add certain modules that you do not have added via ~/.modules",
+    ". /opt/modules/default/init/bash",
+    "",
+    "export PYTHONPATH=%s"%(':'.join(sys.path)),
+    "cd $PBS_O_WORKDIR",
+    "export OMP_NUM_THREADS=%d"%(args.nn*args.np),
+    "mpirun -n {nt} /usr/bin/python {inp} > {inp}.stdout"\
+        .format(nt=args.nn*args.np,inp=args.inpfn),
   ]
 
 with open('qsub.in','w') as outf:
-  outf.write('\n'.join(outlines))
+  outf.write('\n'.join(qsub_lines))
 
 print(sub.check_output("qsub qsub.in",shell=True).decode())

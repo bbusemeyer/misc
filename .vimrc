@@ -39,7 +39,7 @@ set expandtab      " use spaces instead of tabs
 set number         " numbers the lines
 set wildmenu       " tab completion
 set fdm=indent
-set tw=80
+set tw=0
 set t_Co=256
 
 "colorscheme delek
@@ -80,7 +80,7 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  "autocmd FileType text setlocal textwidth=78
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler

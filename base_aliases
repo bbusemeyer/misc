@@ -44,14 +44,15 @@ alias gd='git diff'
 globus='~/programs/globusconnectpersonal-2.3.3/globusconnect -start -restrict-paths rw~/,rw/media/internal_hdd/'
 gmira='alcf#dtn_mira'
 gtaub='illinois#iccp'
+ggol='illinois#iccp'
 glap='busemey2#laptop'
 gbw='ncsa#BlueWaters'
 gver='veritas'
 
 # Lucas's office computer:
 hawk='busemey2@hawk.physics.illinois.edu'
-# Taub supercomputer
-taub='busemey2@taub.campuscluster.illinois.edu'
+# Golub supercomputer
+gol='busemey2@golub.campuscluster.illinois.edu'
 # Office computer 
 #ver='brian@veritas.physics.illinois.edu'
 ver='brian@128.174.249.177'
