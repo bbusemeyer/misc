@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in */record.json
+for i in $@
 do
   ln -s -v `pwd`/${i} alljsons/${i/\//.}
 done
