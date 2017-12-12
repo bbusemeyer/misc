@@ -1,0 +1,3 @@
+source ~/tools/misc/base_aliases
+
+alias qs='qstat -u busemey2'
