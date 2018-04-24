@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+import sys
+import subprocess as sub
+import os
+import argparse
+import mython as my
+
+dft='(=%(default)s)'
+parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
+parser.add_argument('inpfn',type=str,
+    help='QWalk input to be submitted.')
+parser.add_argument('-np',default='allprocs',
+    help='Number of processors per node.'+dft)
+parser.add_argument('-nn',default=1,type=int,
+    help='Number of nodes.'+dft)
+parser.add_argument('-t',dest='time',default='4:00:00',type=str,
+    help='Time string.'+dft)
+parser.add_argument('-q',dest='queue',default='secondary',type=str,
+    help='Queue.'+dft)
+args=parser.parse_args()
+
+name=args.inpfn
+
+if args.np=='allprocs':
+  procs=',flags=allprocs'
+  mpi='mpirun'
+else:
+  procs=':ppn=%d'%int(args.np)
+  mpi='mpirun -n %d'%(args.nn*int(args.np))
+
+outlines = [
+    "#!/bin/bash",
+    "#PBS -l nodes=%d%s"%(args.nn,procs),
+    "#PBS -l walltime=%s"%args.time,
+    "#PBS -N %s"%name,
+    "#PBS -e $PBS_JOBID.err",
+    "#PBS -o $PBS_JOBID.out",
+    "#PBS -q %s"%args.queue,
+    "cd %s"%os.getcwd(),
+    "module load openmpi/1.4-gcc+ifort",
+    "cp %s INPUT"%args.inpfn,
+    "%s ~/bin/Pcrystal &> %s.out"%(mpi,args.inpfn),
+    "rm *.pe[0-9] *.pe[0-9][0-9]"
+  ]
+
+with open('qsub.in','w') as outf:
+  outf.write('\n'.join(outlines))
+
+print(sub.check_output("qsub qsub.in",shell=True).decode())

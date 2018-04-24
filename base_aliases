@@ -43,7 +43,7 @@ alias gd='git diff'
 # Globus shortcuts.
 alias globus='~/programs/globusconnectpersonal-2.3.3/globusconnect -start -restrict-paths rw~/,rw/media/internal_hdd/'
 gmira='alcf#dtn_mira'
-gtaub='illinois#iccp'
+ggol='illinois#iccp'
 ggol='illinois#iccp'
 glap='busemey2#laptop'
 gbw='ncsa#BlueWaters'
