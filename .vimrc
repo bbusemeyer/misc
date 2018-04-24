@@ -38,9 +38,9 @@ set shiftwidth=2   " indents by 2
 set expandtab      " use spaces instead of tabs
 set number         " numbers the lines
 set wildmenu       " tab completion
-set fdm=indent
-set tw=0
-set t_Co=256
+set fdm=indent     " Folding mode
+set tw=0           " Textwidth=0 means no width.
+set t_Co=256       " Number of colors available.
 
 "colorscheme delek
 

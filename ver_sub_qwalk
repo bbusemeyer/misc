@@ -9,7 +9,7 @@ dft='(=%(default)s)'
 parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
 parser.add_argument('inpfns',type=str,nargs='+',
     help='QWalk input to be submitted.')
-parser.add_argument('-np',default=8,type=int,
+parser.add_argument('-np',default=4,type=int,
     help='Number of processors per node.'+dft)
 parser.add_argument('-nn',default=1,type=int,
     help='Number of nodes.'+dft)
