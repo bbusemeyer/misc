@@ -13,6 +13,13 @@ remove expandtab, etc. line from /usr/share/vim/vim74/ftplugin/python.vim
 
 =======================================================================
 
+Edit vim colors.
+
+To find out where they are defined:
+:verbose hi
+
+=======================================================================
+
 To get latex to position table elements correctly: \raisebox{-0.5\height}
 
 =======================================================================

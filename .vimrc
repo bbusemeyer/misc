@@ -42,7 +42,9 @@ set fdm=indent     " Folding mode
 set tw=0           " Textwidth=0 means no width.
 set t_Co=256       " Number of colors available.
 
-"colorscheme delek
+set background=dark
+colorscheme desert
+"colorscheme default
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -107,9 +109,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
-hi Folded ctermfg=245
-hi Folded ctermbg=white
 
 "autocmd BufWinLeave * mkview
 "autocmd BufWinEnter * silent loadview 
