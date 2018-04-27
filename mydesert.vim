@@ -68,10 +68,11 @@ hi Ignore	guifg=grey40
 hi Todo		guifg=orangered guibg=yellow2
 
 " color terminal definitions
+hi MatchParen ctermfg=16 ctermbg=blue
 hi SpecialKey	ctermfg=darkgreen
 hi NonText	cterm=bold ctermfg=darkblue
 hi Directory	ctermfg=darkcyan
-hi ErrorMsg	cterm=bold ctermfg=7 ctermbg=1
+hi ErrorMsg	cterm=bold ctermfg=16 ctermbg=red
 hi IncSearch	cterm=NONE ctermfg=16 ctermbg=green
 hi Search ctermfg=16 ctermbg=blue
 hi MoreMsg	ctermfg=darkgreen
@@ -102,7 +103,7 @@ hi Type		ctermfg=2
 hi Underlined	cterm=underline ctermfg=5
 hi Ignore	cterm=bold ctermfg=7
 hi Ignore	ctermfg=darkgrey
-hi Error	cterm=bold ctermfg=7 ctermbg=1
+hi Error	cterm=bold ctermfg=16 ctermbg=red
 
 
 "vim: sw=4
