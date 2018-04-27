@@ -76,7 +76,7 @@ hi IncSearch	cterm=NONE ctermfg=16 ctermbg=green
 hi Search ctermfg=16 ctermbg=blue
 hi MoreMsg	ctermfg=darkgreen
 hi ModeMsg	cterm=NONE ctermfg=brown
-hi LineNr	ctermfg=
+hi LineNr	ctermfg=3
 hi Question	ctermfg=green
 hi StatusLine	cterm=bold,reverse
 hi StatusLineNC cterm=reverse
