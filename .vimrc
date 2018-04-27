@@ -43,7 +43,7 @@ set tw=0           " Textwidth=0 means no width.
 set t_Co=256       " Number of colors available.
 
 set background=dark
-colorscheme desert
+colorscheme mydesert
 "colorscheme default
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
