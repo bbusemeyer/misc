@@ -86,7 +86,7 @@ hi Title	ctermfg=5
 hi Visual	cterm=reverse
 hi VisualNOS	cterm=bold,underline
 hi WarningMsg	ctermfg=1
-hi WildMenu	ctermfg=0 ctermbg=3
+hi WildMenu	ctermfg=16 ctermbg=3
 hi Folded	ctermfg=darkgrey ctermbg=NONE
 hi FoldColumn	ctermfg=darkgrey ctermbg=NONE
 hi DiffAdd	ctermbg=4
@@ -104,6 +104,8 @@ hi Underlined	cterm=underline ctermfg=5
 hi Ignore	cterm=bold ctermfg=7
 hi Ignore	ctermfg=darkgrey
 hi Error	cterm=bold ctermfg=16 ctermbg=red
+hi Todo		ctermfg=16 ctermbg=yellow
+hi Pmenu  ctermfg=16 ctermbg=blue
 
 
 "vim: sw=4
