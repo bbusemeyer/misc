@@ -106,6 +106,8 @@ hi Ignore	ctermfg=darkgrey
 hi Error	cterm=bold ctermfg=16 ctermbg=red
 hi Todo		ctermfg=16 ctermbg=yellow
 hi Pmenu  ctermfg=16 ctermbg=blue
+hi SpellBad cterm=bold ctermfg=16 ctermbg=red
+hi SpellCap cterm=bold ctermfg=16 ctermbg=blue
 
 
 "vim: sw=4
