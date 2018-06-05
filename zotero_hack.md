@@ -8,7 +8,7 @@ The below hack no longer works because the code has changed a lot since then.
   and remove the first args of the `replace` commands corresponding to the characters you don't want edited.
 - Restart Zotero.
 
-If you want to just stop all excape character editing, `return str`.
+If you want to just stop all escape character editing, `return str`.
 
 Here's my code from 2018
 
