@@ -10,6 +10,33 @@ The below hack no longer works because the code has changed a lot since then.
 
 If you want to just stop all excape character editing, `return str`.
 
+Here's my code from 2018
+
+
+```
+// See http://tex.stackexchange.com/questions/230750/open-brace-in-bibtex-fields/230754
+var vphantomRe = /\\vphantom{\\}}((?:.(?!\\vphantom{\\}}))*)\\vphantom{\\{}/g;
+function escapeSpecialCharacters(str) {
+  //replace(/[\{\}]/g, function(c) { return alwaysMap[c] })
+	var newStr = str.replace(/([\#\%\&])/g, "\\$1");
+	
+	// We escape each brace in the text by making sure that it has a counterpart,
+	// but sometimes this is overkill if the brace already has a counterpart in
+	// the text.
+	if (newStr.indexOf('\\vphantom') != -1) {
+		var m;
+		while (m = vphantomRe.exec(newStr)) {
+			// Can't use a simple replace, because we want to match up inner with inner
+			// and outer with outer
+			newStr = newStr.substr(0,m.index) + m[1] + newStr.substr(m.index + m[0].length);
+			vphantomRe.lastIndex = 0; // Start over, because the previous replacement could have created a new pair
+		}
+	}
+	
+	return newStr;
+}
+```
+
 Advice from 2009
 ----------------
 
