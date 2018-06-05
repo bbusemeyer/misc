@@ -108,4 +108,4 @@ command! -bar SetupPython call SetupPython()
 filetype plugin indent on
 autocmd FileType tex setlocal wrap spell
 autocmd FileType text setlocal wrap spell
-autocmd FileType md  setlocal wrap spell
+autocmd FileType markdown setlocal wrap spell
