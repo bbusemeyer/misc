@@ -7,7 +7,7 @@ import argparse
 dft='(=%(default)s)'
 parser=argparse.ArgumentParser("Submit a pyscf run.")
 parser.add_argument('inpfn',type=str,
-    help='Python script to be submitted.')
+    help='Crystal input to be submitted.')
 parser.add_argument('-np',default=32,type=int,
     help='Number of processors per node.'+dft)
 parser.add_argument('-nn',default=1,type=int,
@@ -24,7 +24,7 @@ outlines = [
     "#!/bin/bash",
     "#PBS -l nodes=%d:ppn=%d:xe"%(args.nn,args.np),
     "#PBS -l walltime=%s"%args.time,
-    "#PBS -A bahu",
+    "#PBS -A batr",
     "#PBS -N %s"%args.inpfn,
     "#PBS -e $PBS_JOBID.err",
     "#PBS -o $PBS_JOBID.out",

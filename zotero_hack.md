@@ -3,6 +3,7 @@ My work from 2018
 
 The below hack no longer works because the code has changed a lot since then.
 
+- Open `BibTeX.js` in the `zotero/translators` directory.
 - Try searching for `alwaysMap` and commenting out the baddies.
 - Search for `function escapeSpecialCharacters` 
   and remove the first args of the `replace` commands corresponding to the characters you don't want edited.
