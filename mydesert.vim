@@ -94,7 +94,7 @@ hi DiffChange	ctermbg=5
 hi DiffDelete	cterm=bold ctermfg=4 ctermbg=6
 hi DiffText	cterm=bold ctermbg=1
 hi Comment	ctermfg=darkcyan
-hi Constant	ctermfg=172
+hi Constant	ctermfg=130
 hi Special	ctermfg=5
 hi Identifier	ctermfg=6
 hi Statement	ctermfg=3
