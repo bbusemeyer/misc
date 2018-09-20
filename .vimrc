@@ -36,6 +36,7 @@ set wildmenu       " tab completion
 set fdm=indent     " Folding mode
 set tw=0           " Textwidth=0 means no width.
 set t_Co=256       " Number of colors available.
+set smartcase      " Searches are case-sensitive if they contain capital letters.
 
 set background=dark
 colorscheme mydesert
