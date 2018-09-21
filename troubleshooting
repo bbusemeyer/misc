@@ -7,9 +7,18 @@ and playback solves the problem.
 
 =======================================================================
 
-To get vim to stop messing with python files:
+# To get vim to stop messing with python files:
 
-remove expandtab, etc. line from /usr/share/vim/vim74/ftplugin/python.vim
+mkdir ~/.vim/after/ftplugin
+echo "setlocal softtabstop=2" >> ~/.vim/after/ftplugin/python.vim
+echo "setlocal tabstop=2" >> ~/.vim/after/ftplugin/python.vim
+echo "setlocal shiftwidth=2" >> ~/.vim/after/ftplugin/python.vim
+
+# .vim/after keeps all scripts that get loaded last, after all other scripts are loaded.
+
+
+# Old:
+# remove expandtab, etc. line from /usr/share/vim/vim74/ftplugin/python.vim
 
 =======================================================================
 
