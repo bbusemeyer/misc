@@ -21,9 +21,6 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set background=dark
-colorscheme mydesert
-"colorscheme default
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -109,3 +106,7 @@ set wildmenu       " tab completion
 set fdm=indent     " Folding mode
 set tw=0           " Textwidth=0 means no width.
 set t_Co=256       " Number of colors available.
+
+set background=dark
+colorscheme mydesert
+"colorscheme default
