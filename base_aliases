@@ -7,6 +7,7 @@ alias R='R -q'
 alias mkddir='mkdir `date "+%F"`'
 alias py='python3 -u -W ignore' # Python warnings are getting out of hand...
 alias py2='python2 -u'
+alias ipython='ipython3'
 alias tra='trash'
 alias gpp='g++'
 alias tp='trash-put'
