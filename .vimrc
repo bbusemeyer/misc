@@ -21,25 +21,6 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set nobackup
-set nowrap         " turn off the fucking wrap around
-set linebreak      " if the wrap around is on, don't break words
-set history=50	   " keep 50 lines of command line history
-set ruler		   " show the cursor position all the time
-set showcmd		   " display incomplete commands
-set incsearch	   " do incremental searching
-set tabstop=2      " makes tabs of width 2
-set shiftwidth=2   " indents by 2
-set expandtab      " use spaces instead of tabs
-set number         " numbers the lines
-set wildmenu       " tab completion
-set fdm=indent     " Folding mode
-set tw=0           " Textwidth=0 means no width.
-set t_Co=256       " Number of colors available.
-
-set background=dark
-colorscheme mydesert
-"colorscheme default
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -109,3 +90,23 @@ filetype plugin indent on
 autocmd FileType tex setlocal wrap spell
 autocmd FileType text setlocal wrap spell
 autocmd FileType markdown setlocal wrap spell
+
+set nobackup
+set nowrap         " turn off the fucking wrap around
+set linebreak      " if the wrap around is on, don't break words
+set history=50	   " keep 50 lines of command line history
+set ruler		   " show the cursor position all the time
+set showcmd		   " display incomplete commands
+set incsearch	   " do incremental searching
+set tabstop=2      " makes tabs of width 2
+set shiftwidth=2   " indents by 2
+set expandtab      " use spaces instead of tabs
+set number         " numbers the lines
+set wildmenu       " tab completion
+set fdm=indent     " Folding mode
+set tw=0           " Textwidth=0 means no width.
+set t_Co=256       " Number of colors available.
+
+set background=dark
+colorscheme mydesert
+"colorscheme default
