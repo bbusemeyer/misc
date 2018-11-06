@@ -10,12 +10,8 @@ export PATH=~/tools:$PATH
 export PATH=~/bin:$PATH
 export PATH=/opt/intel/bin:$PATH
 export PATH=.:$PATH
-export PYTHONPATH=/home/busemey/programs:$PYTHONPATH
 export PYTHONPATH=/home/busemey/programs/autogenv2:$PYTHONPATH
-export PYTHONPATH=/home/busemey/programs/qwalk/utils:$PYTHONPATH
-export PYTHONPATH=/home/busemey/programs/qwalk/utils/autogen:$PYTHONPATH
 export PYTHONPATH=/home/busemey/tools/busempyer:$PYTHONPATH
-export PYTHONPATH=/home/busemey/programs:$PYTHONPATH
 export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.
