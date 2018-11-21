@@ -3,7 +3,6 @@ import sys
 import subprocess as sub
 import os
 import argparse
-import mython as my
 
 dft='(=%(default)s)'
 parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
@@ -37,7 +36,7 @@ outlines = [
     "#PBS -o $PBS_JOBID.out",
     "#PBS -q %s"%args.queue,
     "cd %s"%os.getcwd(),
-    "module load openmpi/1.4-gcc+ifort",
+    "module load openmpi/3.1.1-intel-18.0",
     "cp %s INPUT"%args.inpfn,
     "%s ~/bin/Pcrystal &> %s.out"%(mpi,args.inpfn),
     "rm *.pe[0-9] *.pe[0-9][0-9]"

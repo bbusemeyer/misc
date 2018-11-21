@@ -1,21 +1,17 @@
 module load vim
-module load python/3.4.0
-module load gcc/4.7.1
-module unload intel/11.0
-module load intel/17.0
+module load python/3
+module load gcc
 module load git
-module load openmpi/1.4-gcc+ifort
+module load openmpi/3.1.1-gcc-7.2.0
 
 export PATH=~/tools:$PATH
 export PATH=~/tools/busempyer:$PATH
 export PATH=~/tools/busempyer/drivers:$PATH
 export PATH=~/bin:$PATH
-export PYTHONPATH=~/programs/qwalk/utils/autogen:$PYTHONPATH
-export PYTHONPATH=~/programs/qwalk/utils:$PYTHONPATH
 export PYTHONPATH=~/programs/pyscf
 export PYTHONPATH=~/.local/lib/python3.4/site-packages:$PYTHONPATH
-export PYTHONPATH=~/programs:$PYTHONPATH
 export PYTHONPATH=~/tools/busempyer:$PYTHONPATH
 export PYTHONPATH=~/programs/autogenv2:$PYTHONPATH
+export PYTHONPATH=~/programs/qwalk_objects:$PYTHONPATH
 export PYTHONPATH=~/bin:$PYTHONPATH
 

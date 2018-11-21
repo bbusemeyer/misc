@@ -33,7 +33,8 @@ outlines = [
     "#PBS -q %s"%args.queue,
     "cd %s"%os.getcwd(),
     "export OMP_NUM_THREADS=%d"%(args.nn*args.np),
-    "python3 %s &> %s.out"%(args.inpfn,args.inpfn),
+    "export PTYHONPATH=%s"%':'.join(sys.path),
+    "python3 %s &> %s.o"%(args.inpfn,args.inpfn),
   ]
 
 with open('qsub.in','w') as outf:
