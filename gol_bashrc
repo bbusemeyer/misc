@@ -12,5 +12,6 @@ export PYTHONPATH=~/programs/pyscf
 export PYTHONPATH=~/.local/lib/python3.4/site-packages:$PYTHONPATH
 export PYTHONPATH=~/tools/busempyer:$PYTHONPATH
 export PYTHONPATH=~/programs/autogenv2:$PYTHONPATH
+export PYTHONPATH=~/programs/qwalk_objects:$PYTHONPATH
 export PYTHONPATH=~/bin:$PYTHONPATH
 
