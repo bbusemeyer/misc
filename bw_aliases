@@ -1,2 +1,3 @@
 source ~/tools/misc/base_aliases
 alias qs='qstat -u busemeye'
+alias globus='~/bin/globus' # hack because of weird globus path problem

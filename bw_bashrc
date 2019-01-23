@@ -1,12 +1,5 @@
 source ~/tools/misc/base_bashrc
 
-# Path definitions.
-export PYTHONPATH=~/programs/pyscf:$PYTHONPATH
-export PYTHONPATH=~/programs/autogenv2:$PYTHONPATH
-export PYTHONPATH=~/programs/qwalk_objects:$PYTHONPATH
-export PYTHONPATH=~/tools/busempyer:$PYTHONPATH
-export PYTHONPATH=~/programs:$PYTHONPATH
-
 # Docker.
 # This seems to screw up other programs. 
 #UDI=lkwagner/pyscf:latest
@@ -16,3 +9,11 @@ export PYTHONPATH=~/programs:$PYTHONPATH
 module load bwpy
 # This may screw with the pyscf compilation.
 #module swap PrgEnv-cray PrgEnv-gnu; module load acml; module load cblas
+
+# Path definitions.
+export PYTHONPATH=~/programs/pyscf:$PYTHONPATH
+export PYTHONPATH=~/programs/qwalk_objects:$PYTHONPATH
+export PYTHONPATH=~/programs/autogenv2:$PYTHONPATH
+export PYTHONPATH=~/programs/qwalk_objects:$PYTHONPATH
+export PYTHONPATH=~/tools/busempyer:$PYTHONPATH
+export PATH=~/bin:$PATH
