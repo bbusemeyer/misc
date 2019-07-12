@@ -1,4 +1,5 @@
 source ~/tools/misc/base_aliases
+pauli='um180287@pauli.physics.lsa.umich.edu'
 alias qs='qstat -a'
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
 
