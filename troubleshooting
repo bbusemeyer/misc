@@ -1,12 +1,28 @@
 
 =======================================================================
+vim doens't highlight things correctly anymore.
+
+https://tex.stackexchange.com/questions/416030/how-do-i-make-vim-highlight-math-properly-in-the-align-environment
+
+Sometime around 2017 (I think), Dr. Chip decided that base-vim should only support syntax highlighting for base-latex. It is necessary to add in support for syntax highlighting for things available in latex packages (such as amsmath, which is what provides the align environment).
+
+But this is very easy, and Dr. Chip includes syntax files for amsmath (and a few other packages) on his website.
+
+In order to use these, you do the following. I will assume that you want to install additional highlighting to cover the align environment. As this comes from amsmath, we will add additional amsmath highlighting support. Then you
+
+Get http://www.drchip.org/astronaut/vim/vbafiles/amsmath.vba.gz from Dr. Chip
+The file is in vimball format, and the easiest way to extract it is to open it with vim and follow instructions (which probably say :so %).
+Move and rename amsmath.vba to ~/.vim/after/syntax/tex/amsmath.vim (or the corresponding location on your machine). One can also run :so % from amsmath.vba, this will automatically make ~/.vim/after/syntax/tex/amsmath.vim (and works if moving the amsmath.vba doesn't)
+It is also possible to do this directly from your vimrc by making new "math zones" (and this is mostly what amsmath.vim does anyway). See :h tex-math for more.
+
+
+=======================================================================
 Problem: Audacity records audio too slow.
 
 Problem is with the sound card? Changing to pulse audio for recording
 and playback solves the problem.
 
 =======================================================================
-
 # To get vim to stop messing with python files:
 
 mkdir ~/.vim/after/ftplugin

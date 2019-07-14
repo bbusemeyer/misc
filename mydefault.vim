@@ -13,13 +13,16 @@ set bg&
 " Remove all existing highlighting and set the defaults.
 hi clear
 
-hi Folded term=standout ctermfg=4 ctermbg=254 guifg=DarkBlue guibg=LightGrey
-
 " Load the syntax highlighting defaults, if it's enabled.
 if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "default"
+let colors_name = "mydefault"
+
+hi Folded term=standout ctermfg=7 ctermbg=235 guifg=DarkBlue guibg=LightGrey
+hi SpellBad term=reverse ctermbg=1 gui=undercurl guisp=Red
+hi SpellCap term=reverse ctermbg=4 gui=undercurl guisp=Blue
+hi Special term=bold ctermfg=219 guifg=Orange
 
 " vim: sw=2
