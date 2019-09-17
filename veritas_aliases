@@ -2,5 +2,7 @@ source ~/tools/misc/base_aliases
 pauli='um180287@pauli.physics.lsa.umich.edu'
 alias qs='qstat -a'
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
+alias view='vi -R'
+alias python='python3'
 
 backuplist='./Desktop ./Pictures ./Documents ./homework ./programs ./Music ./projects ./tools ./.bash* ./.*rc .matplotlib/'

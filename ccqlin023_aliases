@@ -1,0 +1,4 @@
+source ~/tools/misc/base_aliases
+alias view='vi -R'
+alias python='python3'
+alias notebook="firebox; jupyter lab"

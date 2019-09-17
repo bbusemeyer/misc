@@ -18,7 +18,6 @@ alias rsync='rsync --progress'
 alias qs='qstat -a'
 alias di='ls'
 alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \ C\ "'
-alias notebook="google-chrome; jupyter notebook"
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
 
 # Spelling fixes.
