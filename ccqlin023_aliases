@@ -1,4 +1,5 @@
 source ~/tools/misc/base_aliases
 alias view='vi -R'
 alias python='python3'
-alias notebook="firebox; jupyter lab"
+alias notebook="google-chrome; jupyter lab"
+alias qs="squeue -a -u bbusemeyer"

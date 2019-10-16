@@ -1,10 +1,11 @@
-\setlength{\textwidth}{10in}
+\usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[usenames]{color}
-\usepackage{mhchem}
-\setlength{\parindent}{0in}
-\usepackage[none]{hyphenat}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[none]{hyphenat}
 \usepackage{mycommands}
+
+\setlength{\textwidth}{10in}
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\parindent}{0in}
+\setlist[enumerate]{itemsep=0pt}
+\setlist[itemize]{itemsep=0pt}
