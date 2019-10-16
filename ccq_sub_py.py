@@ -1,13 +1,16 @@
+#!/usr/bin/env python3
 
 import argparse
 import sys
+import os
+import subprocess as sub
 
 def main():
   dft='(=%(default)s)'
   parser=argparse.ArgumentParser(sys.argv[0].split('/')[-1])
   parser.add_argument('inpfn',type=str,
       help='Input to be submitted.')
-  parser.add_argument('-np',default=12,type=int,
+  parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
   parser.add_argument('-q',dest='queue',default='ccq',type=str,
       help='Queue.'+dft)
@@ -20,16 +23,19 @@ def main():
 def qsub(inpfn,local=False,time='1:00:00',queue='ccq'):
   outlines = [
       "#!/usr/bin/env python3",
-      "#SBATCH -N {}".format(nnode),
+      "##################################",
       "#SBATCH --exclusive",
+      "#SBATCH -N 1",
       "#SBATCH -t {}".format(time),
-      "#SBATCH -J {}".format(loc),
+      "#SBATCH -J {}".format(inpfn),
       "#SBATCH -p ccq",
       "#SBATCH -o qsub.py.out",
       "#SBATCH -e qsub.py.out",
-      "os.chdir('{}')".format(os.getcwd()+'/'+loc),
+      "import os,sys",
+      "os.chdir('{}')".format(os.getcwd()),
       "sys.path = {}".format(['.']+sys.path), 
       "# End of sbatch header.",
+      "##################################",
       "",
     ]
 
@@ -40,6 +46,6 @@ def qsub(inpfn,local=False,time='1:00:00',queue='ccq'):
   if local:
     print( sub.check_output("python3 ./qsub.py &> qsub.py.out",shell=True).decode() )
   else:
-    print( sub.check_output("sbatch ./qsub.in",shell=True).decode() )
+    print( sub.check_output("sbatch ./qsub.py",shell=True).decode() )
 
 if __name__=='__main__':main()
