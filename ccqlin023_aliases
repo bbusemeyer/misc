@@ -2,4 +2,4 @@ source ~/tools/misc/base_aliases
 alias view='vi -R'
 alias python='python3'
 alias notebook="google-chrome; jupyter lab"
-alias qs="squeue -a -u bbusemeyer"
+alias qs="squeue -al -u bbusemeyer"
