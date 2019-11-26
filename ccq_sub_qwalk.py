@@ -17,13 +17,13 @@ def main():
       help='Time string.'+dft)
   parser.add_argument('-q',dest='queue',default='batch',type=str,
       help='Queue.'+dft)
-  parser.add_argument('-c',dest='cluster',action='store_true',
-      help='Run on the cluster'+dft)
+  parser.add_argument('-l',dest='local',action='store_true',
+      help='Run locally'+dft)
   args=parser.parse_args()
 
-  qsub(nn=args.nn,np=args.np,time=args.time,inpfn=args.inpfn,queue=args.queue,cluster=args.cluster)
+  qsub(nn=args.nn,np=args.np,time=args.time,inpfn=args.inpfn,queue=args.queue,local=args.local)
 
-def qsub(inpfn,cluster=False,nn=1,np=12,time='1:00:00',queue='batch'):
+def qsub(inpfn,local=False,nn=1,np=12,time='1:00:00',queue='batch'):
   outlines = [
       "#!/bin/bash",
       "#PBS -l nodes=%d:ppn=%d"%(nn,np),
@@ -43,10 +43,10 @@ def qsub(inpfn,cluster=False,nn=1,np=12,time='1:00:00',queue='batch'):
   with open('qsub.in','w') as outf:
     outf.write('\n'.join(outlines))
 
-  if cluster:
+  if local:
+    print( sub.check_output("bash ./qsub.in",shell=True).decode() )
+  else:
     raise NotImplementedError("Need to put slurm options in.")
     print( sub.check_output("sbatch ./qsub.in",shell=True).decode() )
-  else:
-    print( sub.check_output("bash ./qsub.in",shell=True).decode() )
 
 if __name__=='__main__': main()

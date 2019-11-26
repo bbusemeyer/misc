@@ -19,26 +19,30 @@ def main():
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run locally.'+dft)
+  parser.add_argument('-nk',dest='nk',default=1,type=int,
+      help='Number of QE "pools" corresponding to division of kpoints.'+dft)
+  parser.add_argument('--ptype',dest='ptype',default=None,
+      help='Processor type to enforce (skylake or broadwell).'+dft)
   args=parser.parse_args()
 
-  qsub(exe=args.exe,time=args.time,inpfn=args.inpfn,queue=args.queue,local=args.local,nn=args.nn)
+  qsub(exe=args.exe,time=args.time,inpfn=args.inpfn,queue=args.queue,local=args.local,nn=args.nn,nk=args.nk,ptype=args.ptype)
 
-def qsub(inpfn,exe='pw',local=False,nn=1,time='1:00:00',queue='ccq'):
+def qsub(inpfn,exe='pw',local=False,nn=1,time='1:00:00',queue='ccq',nk=1,ptype=None):
+  ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   outlines = [
-      "#!/bin/bash",
-      "#SBATCH -N {}".format(nn),
-      "#SBATCH --exclusive",
-      "#SBATCH -t {}".format(time),
-      "#SBATCH -J {}".format(inpfn),
-      "#SBATCH -p {}".format(queue),
-      "cd %s"%os.getcwd(),
-      "module purge",
-      "module load intel",
-      "module load intel/compiler",
-      "module load intel/license",
-      "module load intel/mkl",
-      "module load intel/mpi",
-      "mpirun /mnt/home/bbusemeyer/bin/%s.x < %s &> %s.out"%(exe,inpfn,inpfn),
+      f"#!/bin/bash",
+      f"#SBATCH -N {nn}",
+      f"#SBATCH --exclusive",
+      f"#SBATCH -t {time}",
+      f"#SBATCH -J {inpfn}",
+      f"#SBATCH -p {queue}",
+      f"#SBATCH -o {inpfn}.out",
+      f"#SBATCH -e {inpfn}.out",
+    ] + ptypeline + [
+      f"cd %s"%os.getcwd(),
+      f"module purge",
+      f"module load slurm gcc lib/fftw3 lib/openblas openmpi intel/mkl",
+      f"mpirun /mnt/home/bbusemeyer/bin/{exe}.x -input {inpfn} -nk {nk}"
     ]
 
   with open('qsub.in','w') as outf:
