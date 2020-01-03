@@ -1,4 +1,4 @@
-source ~/tools/misc/base_aliases
+source ${HOME}/tools/misc/base_aliases
 alias view='vi -R'
 alias python='python3'
 alias notebook="google-chrome; jupyter lab"
