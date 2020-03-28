@@ -20,18 +20,16 @@ def main():
   parser.add_argument('-c',dest='cluster',action='store_true',
       help='Run on the cluster'+dft)
   args=parser.parse_args()
+  parser.add_argument('-pp',dest='pp',action='store_true',
+      help='Pre-processing flag for Wannier90.'+dft)
 
-  qsub(nn=args.nn,np=args.np,time=args.time,inpfn=args.inpfn,queue=args.queue,cluster=args.cluster)
+  qsub(nn=args.nn,np=args.np,time=args.time,inpfn=args.inpfn,queue=args.queue,cluster=args.cluster,pp=args.pp)
 
-def qsub(inpfn,cluster=False,nn=1,np=12,time='1:00:00'):
+def qsub(inpfn,pp=False,cluster=False,nn=1,np=12,time='1:00:00',queue='batch'):
+  if pp: flags = '-pp'
+  else: flags = ''
   outlines = [
       "#!/bin/bash",
-      "#PBS -l nodes=%d:ppn=%d"%(args.nn,args.np),
-      "#PBS -l walltime=%s"%args.time,
-      "#PBS -N %s"%args.inpfn,
-      "#PBS -e $PBS_JOBID.err",
-      "#PBS -o $PBS_JOBID.out",
-      "#PBS -q %s"%args.queue,
       "cd %s"%os.getcwd(),
       "module purge",
       "module load intel",
@@ -39,13 +37,13 @@ def qsub(inpfn,cluster=False,nn=1,np=12,time='1:00:00'):
       "module load intel/license",
       "module load intel/mkl",
       "module load intel/mpi",
-      "mpirun -n %d /mnt/home/bbusemeyer/bin/pw.x < %s &> %s.out"%(args.nn*args.np,args.inpfn,args.inpfn),
+      "mpirun -n %d /mnt/home/bbusemeyer/bin/wannier90.x %s %s &> %s.out"%(nn*np,flags,inpfn,inpfn),
     ]
 
   with open('qsub.in','w') as outf:
     outf.write('\n'.join(outlines))
 
-  if args.cluster:
+  if cluster:
     print( sub.check_output("sbatch ./qsub.in",shell=True).decode() )
   else:
     print( sub.check_output("bash ./qsub.in",shell=True).decode() )

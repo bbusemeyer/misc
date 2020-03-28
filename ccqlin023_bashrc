@@ -1,30 +1,39 @@
 source ~/tools/misc/base_bashrc
 
 # Add sources to path.
-export PATH=/home/bbusemeyer/tools/busempyer:$PATH
-export PATH=/home/bbusemeyer/tools:$PATH
-export PATH=~/programs/mathematica/Executables:$PATH
-export PATH=~/programs/espresso-5.1.1/bin:$PATH
-export PATH=~/programs/vesta:$PATH
-export PATH=~/tools:$PATH
-export PATH=~/bin:$PATH
-export PATH=/opt/intel/bin:$PATH
+export PATH=${HOME}/tools/busempyer:$PATH
+export PATH=${HOME}/tools:$PATH
+export PATH=${HOME}/programs/mathematica/Executables:$PATH
+export PATH=${HOME}/programs/espresso-5.1.1/bin:$PATH
+export PATH=${HOME}/programs/vesta:$PATH
+export PATH=${HOME}/tools:$PATH
+export PATH=${HOME}/bin:$PATH
 export PATH=.:$PATH
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/programs/pyqmc
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/programs/pyscf
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/programs/autogenv2
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/programs/qwalk_objects
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/programs/downfolding
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/tools/busempyer
-export PYTHONPATH=$PYTHONPATH:/mnt/home/bbusemeyer/tools/misc
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyqmc
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyscf
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/autogenv2
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/qwalk_objects
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/downfolding
+export PYTHONPATH=$PYTHONPATH:${HOME}/tools/busempyer
+export PYTHONPATH=$PYTHONPATH:${HOME}/tools/misc
+export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.7
+
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/afqmclab/scripts
+
 export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.
 export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
 
+# The many AFQMCLAB locations.
+export AFQMCLAB_DIR_GCC="${HOME}/lib/afqmclab-gcc"
+export AFQMCLAB_DIR_DEBUG="${HOME}/lib/afqmclab-debug"
+export AFQMCLAB_DIR=$AFQMCLAB_DIR_GCC
+
 # Intel compiler variables.
 #source /opt/intel/bin/compilervars.sh intel64
 #source /opt/intel/bin/ifortvars.sh intel64
+
 
 # Module commands
 module purge
@@ -33,3 +42,4 @@ module load cmake
 module load lib/hdf5/1.8.21
 module unload python2.7
 module load python3/3.7.3
+module load slurm

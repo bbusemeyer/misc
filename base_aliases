@@ -1,24 +1,35 @@
+#!/bin/bash 
+
 alias less='less -r'       # raw control characters
 alias vi=vim
+alias ci=vi                # Common mistype with disasterous consequences.
 alias whence='type -a'     # where, of a sort
 alias grep='grep --color'  # show differences in colour
 alias l='less -r'
 alias R='R -q'
 alias date='date "+%F"' 
-alias py='python3 -u -W ignore' # Python warnings are getting out of hand...
-alias py2='python2 -u'
 alias ipython='ipython3'
 alias tra='trash'
 alias gpp='g++'
 alias tp='trash-put'
 alias tarp='tar --use-compress-program=pigz'
 alias mcrypt='mcrypt -u'
-alias ppl='python ~/tools/plotter.py'
 alias rsync='rsync --progress'
 alias qs='qstat -a'
 alias di='ls'
 alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \ C\ "'
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
+alias mod="module"
+
+# Exporting functions makes them available outside the command line.
+function py { 
+  python3 -u $@ 
+}
+export -f py
+function py2 { 
+  python2 -u $@ 
+}
+export -f py2
 
 # Spelling fixes.
 alias dc="sl"
