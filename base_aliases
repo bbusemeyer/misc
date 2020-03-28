@@ -54,7 +54,7 @@ hawk='busemey2@hawk.physics.illinois.edu'
 gol='busemey2@golub.campuscluster.illinois.edu'
 # Office computer 
 #ver='brian@veritas.physics.illinois.edu'
-ver='brian@128.174.249.177'
+ver='busemey2@128.174.248.144'
 # Argonne Mira supercomputer.
 mira='busemey@mira.alcf.anl.gov'
 # Globus CLI
