@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from logging import info,INFO,debug,basicConfig
+basicConfig(level=INFO)
 import subprocess as sub
 import os
 
@@ -43,16 +45,18 @@ def qsub(inpfn,exe='pw',local=False,nn=1,time='1:00:00',queue='ccq',nk=1,ni=1,pt
     ] + ptypeline + [
       f"cd %s"%os.getcwd(),
       f"module purge",
-      f"module load slurm gcc openmpi2 lib/fftw3/3.3.8-openmpi2 intel/mkl",
-      f"mpirun /mnt/home/bbusemeyer/bin/{exe}.x -input {inpfn} -nk {nk} -ni {ni}"
+      f"module load slurm gcc openmpi2 intel/mkl",
+      f"mpirun /mnt/home/bbusemeyer/bin/{exe}.x -input {inpfn} -nk {nk} -ni {ni} &> {inpfn}.out"
     ]
 
   with open('qsub.in','w') as outf:
     outf.write('\n'.join(outlines))
 
   if local:
-    print( sub.check_output("bash ./qsub.in",shell=True).decode() )
+    info(f"Running {inpfn} locally...")
+    output = sub.check_output("bash ./qsub.in",shell=True).decode()
+    debug(output)
   else:
-    print( sub.check_output("sbatch ./qsub.in",shell=True).decode() )
+    info( sub.check_output("sbatch ./qsub.in",shell=True).decode() )
 
 if __name__=='__main__': main()

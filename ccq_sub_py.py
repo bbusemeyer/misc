@@ -2,8 +2,8 @@
 
 import argparse
 import sys
-import os
 import subprocess as sub
+import os
 
 def main():
   dft='(=%(default)s)'
@@ -28,6 +28,7 @@ def qsub(inpfn,time='1:00:00',queue='ccq'):
       "#SBATCH -t {}".format(time),
       "#SBATCH -J {}".format(inpfn),
       "#SBATCH -p ccq",
+      "cd {}".format(os.getcwd()),
       "export PYTHONPATH={}".format(':'.join(sys.path)),
       "python3 -u {} &> {}.out".format(inpfn,inpfn)
     ]

@@ -1,6 +1,13 @@
 #!/bin/bash
+echo "-------------------------------------------------"
+echo "repeat: I will repeat " $@
+echo 
+
 while true
 do 
   $@
+  echo 
+  echo "repeat: Spam CTRL-C to escape, enter to go again."
+  echo "-------------------------------------------------"
   read
 done
