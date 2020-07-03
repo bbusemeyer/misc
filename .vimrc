@@ -184,5 +184,5 @@ set fdm=indent     " Folding mode
 set tw=0           " Textwidth=0 means no width.
 set t_Co=256       " Number of colors available.
 
-set background=dark
+set background=light
 colorscheme mydelek

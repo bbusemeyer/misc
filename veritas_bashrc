@@ -10,11 +10,14 @@ export PATH=~/tools:$PATH
 export PATH=~/bin:$PATH
 export PATH=/opt/intel/bin:$PATH
 export PATH=.:$PATH
+export PYTHONPATH=$PYTHONPATH:/home/brian/programs/afqmclab/scripts
 export PYTHONPATH=$PYTHONPATH:/home/brian/programs/pyscf
 export PYTHONPATH=$PYTHONPATH:/home/brian/programs/autogenv2
+export PYTHONPATH=$PYTHONPATH:/home/brian/programs/ase
 export PYTHONPATH=$PYTHONPATH:/home/brian/programs/qwalk_objects
 export PYTHONPATH=$PYTHONPATH:/home/brian/programs/downfolding
 export PYTHONPATH=$PYTHONPATH:/home/brian/tools/busempyer
+export PYTHONPATH=$PYTHONPATH:/home/brian/tools/misc
 export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.

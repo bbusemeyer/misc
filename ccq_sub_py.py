@@ -40,6 +40,7 @@ def qsub(inpfn,time='1:00:00',queue='gen',ptype=None):
   with open('qsub','w') as outf:
     outf.write('\n'.join(outlines))
 
+  print("Submitting python run.")
   print( sub.check_output("sbatch ./qsub",shell=True).decode() )
 
 if __name__=='__main__':main()
