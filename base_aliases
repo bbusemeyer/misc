@@ -17,6 +17,7 @@ alias mcrypt='mcrypt -u'
 alias rsync='rsync --progress'
 alias qs='qstat -a'
 alias di='ls'
+alias dc='cd ..'
 alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \ C\ "'
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
 alias mod="module"
@@ -30,9 +31,6 @@ function py2 {
   python2 -u $@ 
 }
 export -f py2
-
-# Spelling fixes.
-alias dc="sl"
 
 # tools shortcuts
 alias rr='~/tools/record_run.sh'

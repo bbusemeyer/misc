@@ -7,3 +7,8 @@ alias qdel="scancel"
 alias qstat="squeue"
 alias qsub="sbatch"
 alias rusty="ssh -X rusty"
+
+function sclear { 
+  scancel `qs | grep  $1 | awk '{print $1}'`
+}
+export -f sclear

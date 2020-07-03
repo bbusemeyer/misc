@@ -15,6 +15,8 @@ def main():
       help='Input to be submitted.')
   parser.add_argument('-nn',dest='nn',default=1,type=int,
       help='Number of nodes.'+dft)
+  parser.add_argument('-ppn',dest='ppn',default=None,
+      help='Number of processors per node, (all available)')
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
   parser.add_argument('-q',dest='queue',default='ccq',type=str,
@@ -29,10 +31,11 @@ def main():
       help='Processor type to enforce (skylake or broadwell).'+dft)
   args=parser.parse_args()
 
-  qsub(exe=args.exe,time=args.time,inpfn=args.inpfn,queue=args.queue,local=args.local,nn=args.nn,nk=args.nk,ni=args.ni,ptype=args.ptype)
+  qsub(exe=args.exe,time=args.time,inpfn=args.inpfn,queue=args.queue,local=args.local,nn=args.nn,ppn=args.ppn,nk=args.nk,ni=args.ni,ptype=args.ptype)
 
-def qsub(inpfn,exe='pw',local=False,nn=1,time='1:00:00',queue='ccq',nk=1,ni=1,ptype=None):
+def qsub(inpfn,exe='pw',local=False,nn=1,ppn=None,time='1:00:00',queue='ccq',nk=1,ni=1,ptype=None):
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
+  ppnstr = "" if ppn is None else f"-n {ppn}"
   outlines = [
       f"#!/bin/bash",
       f"#SBATCH -N {nn}",
@@ -46,7 +49,7 @@ def qsub(inpfn,exe='pw',local=False,nn=1,time='1:00:00',queue='ccq',nk=1,ni=1,pt
       f"cd %s"%os.getcwd(),
       f"module purge",
       f"module load slurm gcc openmpi2 intel/mkl",
-      f"mpirun /mnt/home/bbusemeyer/bin/{exe}.x -input {inpfn} -nk {nk} -ni {ni} &> {inpfn}.out"
+      f"mpirun {ppnstr} /mnt/home/bbusemeyer/bin/{exe}.x -input {inpfn} -nk {nk} -ni {ni} &> {inpfn}.out"
     ]
 
   with open('qsub.in','w') as outf:

@@ -2,8 +2,6 @@
 import sys
 import subprocess as sub
 import argparse 
-import os
-import mython as my
 
 dft='(=%(default)s)'
 parser=argparse.ArgumentParser("Submit a pyscf run.")

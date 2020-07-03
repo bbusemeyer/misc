@@ -28,7 +28,7 @@ def main():
 
   qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ptype=args.ptype)
 
-def qsub(exe='afqmc2is2s',local=False,nn=1,time='1:00:00',queue='ccq',ptype=None):
+def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='ccq',ptype=None,preempt=False):
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   name = os.getcwd().split('/')[-1]
   outlines = [
