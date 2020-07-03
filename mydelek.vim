@@ -18,9 +18,8 @@ hi DiffDelete ctermfg=Blue	   ctermbg=LightCyan gui=bold guifg=Blue guibg=LightC
 hi DiffText   ctermbg=Red	   cterm=bold gui=bold guibg=Red
 hi Directory  ctermfg=DarkBlue	   guifg=Blue
 hi ErrorMsg   ctermfg=White	   ctermbg=DarkRed  guibg=Red	    guifg=White
-hi FoldColumn ctermfg=DarkBlue	   ctermbg=Grey     guibg=Grey	    guifg=DarkBlue
-hi Folded     ctermbg=234 	   ctermfg=245 guibg=LightGrey guifg=DarkBlue
 hi IncSearch  cterm=reverse	   gui=reverse
+hi FoldColumn ctermfg=DarkBlue	   ctermbg=Grey     guibg=Grey	    guifg=DarkBlue
 hi LineNr     ctermfg=Brown	   guifg=Brown
 hi ModeMsg    cterm=bold	   gui=bold
 hi MoreMsg    ctermfg=DarkGreen    gui=bold guifg=SeaGreen
@@ -29,11 +28,13 @@ hi Pmenu      guibg=LightBlue
 hi PmenuSel   ctermfg=White	   ctermbg=DarkBlue  guifg=White  guibg=DarkBlue
 hi Question   ctermfg=DarkGreen    gui=bold guifg=SeaGreen
 hi SpellBad   ctermbg=None cterm=underline ctermfg=1
-"if &background == "light"
-"    hi Search     ctermfg=234	   ctermbg=234 guibg=Yellow guifg=NONE
-"else
-"    hi Search     ctermfg=Black	   ctermbg=Yellow guibg=Yellow guifg=Black
-"endif
+if &background == "light"
+    hi Search     ctermfg=234	   ctermbg=234 guibg=Yellow guifg=NONE
+    hi Folded     ctermbg=255 	   ctermfg=Grey guibg=LightGrey guifg=DarkBlue
+else
+    hi Search     ctermfg=Black	   ctermbg=Yellow guibg=Yellow guifg=Black
+    hi Folded     ctermbg=234 	   ctermfg=245 guibg=LightGrey guifg=DarkBlue
+endif
 hi Search     ctermfg=NONE	   ctermbg=yellow guibg=yellow guifg=NONE
 hi SpecialKey ctermfg=DarkBlue	   guifg=Blue
 hi StatusLine cterm=bold	   ctermbg=blue ctermfg=yellow guibg=gold guifg=blue

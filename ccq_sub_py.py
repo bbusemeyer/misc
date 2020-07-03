@@ -15,12 +15,12 @@ def main():
   parser.add_argument('-q',dest='queue',default='ccq',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
-      help='Run on the cluster'+dft)
+      help='Run locally instead of on the cluster'+dft)
   args=parser.parse_args()
 
-  qsub(time=args.time,inpfn=args.inpfn,queue=args.queue)
+  qsub(time=args.time,inpfn=args.inpfn,queue=args.queue,local=args.local)
 
-def qsub(inpfn,time='1:00:00',queue='ccq'):
+def qsub(inpfn,time='1:00:00',queue='ccq',local=False):
   outlines = [
       "#!/bin/bash",
       "#SBATCH --exclusive",
@@ -36,6 +36,11 @@ def qsub(inpfn,time='1:00:00',queue='ccq'):
   with open('qsub','w') as outf:
     outf.write('\n'.join(outlines))
 
-  print( sub.check_output("sbatch ./qsub",shell=True).decode() )
+  if local:
+    print("Running locally.")
+    print( sub.check_output("bash ./qsub",shell=True).decode() )
+  else:
+    print("Submitting python run.")
+    print( sub.check_output("sbatch ./qsub",shell=True).decode() )
 
 if __name__=='__main__':main()
