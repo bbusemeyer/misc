@@ -28,33 +28,31 @@ def main():
 
   qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ptype=args.ptype)
 
-def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='ccq',ptype=None,preempt=False):
+def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='ccq',ptype=None,preempt=False,jobname=None):
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
-  name = os.getcwd().split('/')[-1]
+  if jobname is None: jobname = exe
   outlines = [
       f"#!/bin/bash",
       f"#SBATCH -N {nn}",
       f"#SBATCH --exclusive",
       f"#SBATCH -t {time}",
-      f"#SBATCH -J {name}",
+      f"#SBATCH -J {jobname}",
       f"#SBATCH -p {queue}",
-      f"#SBATCH -o {name}.out",
-      f"#SBATCH -e {name}.out",
     ] + ptypeline + [
       f"cd %s"%os.getcwd(),
-       "export AFQMCLAB_DIR=\"${HOME}/lib/afqmclab-gcc\""
+       "export AFQMCLAB_DIR=\"${HOME}/lib/afqmclab-gcc\"",
       f"module purge",
       f"module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.6-pl1",
-      f"mpirun /mnt/home/bbusemeyer/bin/{exe}",
+      f"mpirun /mnt/home/bbusemeyer/bin/{exe} &> {exe}.out",
     ]
 
-  with open('qsub.in','w') as outf:
+  with open('qsub','w') as outf:
     outf.write('\n'.join(outlines))
 
   if local:
-    stdout = sub.check_output("bash ./qsub.in",shell=True).decode() 
+    stdout = sub.check_output("bash ./qsub",shell=True).decode() 
   else:
-    stdout = sub.check_output("sbatch ./qsub.in",shell=True).decode()
+    stdout = sub.check_output("sbatch ./qsub",shell=True).decode()
 
   print(stdout)
 

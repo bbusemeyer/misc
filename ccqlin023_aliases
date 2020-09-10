@@ -2,10 +2,13 @@ source ${HOME}/tools/misc/base_aliases
 alias view='vi -R'
 alias python='python3'
 alias notebook="google-chrome; jupyter lab"
-alias qs="squeue -al -u bbusemeyer"
+alias qs=" squeue -u bbusemeyer -h -o '%.8i %.3P %.24j %.2t %.10M %.10l %.3D %13r' "
+alias qdel="scancel"
+alias qstat="squeue"
+alias qsub="sbatch"
 alias rusty="ssh -X rusty"
 
 function sclear { 
-  scancel `qs | grep  $1 | awk '{print $1}'`
+  scancel `qs | grep $1 | awk '{print $1}'`
 }
 export -f sclear
