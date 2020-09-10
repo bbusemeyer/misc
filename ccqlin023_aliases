@@ -3,9 +3,6 @@ alias view='vi -R'
 alias python='python3'
 alias notebook="google-chrome; jupyter lab"
 alias qs="squeue -al -u bbusemeyer"
-alias qdel="scancel"
-alias qstat="squeue"
-alias qsub="sbatch"
 alias rusty="ssh -X rusty"
 
 function sclear { 
