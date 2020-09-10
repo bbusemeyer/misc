@@ -24,9 +24,10 @@ call vundle#begin()
 
 " Julia syntax highlighting.
 Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" You need to do `:PluginInstall syntastic` before uncommenting this line, I've found.
 Plugin 'syntastic'
 
 " The following are examples of different formats supported.
