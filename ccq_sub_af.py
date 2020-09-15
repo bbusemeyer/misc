@@ -43,7 +43,7 @@ def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='ccq',ptype=None
        "export AFQMCLAB_DIR=\"${HOME}/lib/afqmclab-gcc\"",
       f"module purge",
       f"module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.6-pl1",
-      f"mpirun /mnt/home/bbusemeyer/bin/{exe} &> {exe}.out",
+      f"mpirun ${{HOME}}/bin/{exe} &> {exe}.out",
     ]
 
   with open('qsub','w') as outf:

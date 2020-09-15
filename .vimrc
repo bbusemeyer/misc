@@ -79,7 +79,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " python3 mode.
-let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['pyflakes','flake8']
+let g:syntastic_quiet_messages = { "type": "style" }
 " problem with includes.
 "let g:syntastic_cpp_include_dirs = [ '../include', 'include','./include','/mnt/home/bbusemeyer/lib/afqmclab-gcc/include','/mnt/home/bbusemeyer/lib/gtest/include' ]
 let g:syntastic_cpp_remove_include_errors=1
