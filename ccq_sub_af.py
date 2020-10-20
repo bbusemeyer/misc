@@ -14,7 +14,7 @@ def main():
       help='Number of nodes.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='ccq',type=str,
+  parser.add_argument('-q',dest='queue',default='general',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run locally.'+dft)
@@ -28,21 +28,23 @@ def main():
 
   qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ptype=args.ptype)
 
-def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='ccq',ptype=None,preempt=False,jobname=None):
+def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='general',ptype=None,preempt=False,jobname=None,wait=False):
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
+  waitline = ["#SBATCH -W"] if wait else []
+
   if jobname is None: jobname = exe
   outlines = [
-      f"#!/bin/bash",
+      "#!/bin/bash",
       f"#SBATCH -N {nn}",
-      f"#SBATCH --exclusive",
+      "#SBATCH --exclusive",
       f"#SBATCH -t {time}",
       f"#SBATCH -J {jobname}",
       f"#SBATCH -p {queue}",
-    ] + ptypeline + [
-      f"cd %s"%os.getcwd(),
+      ] + ptypeline + waitline + [
+      "cd %s"%os.getcwd(),
        "export AFQMCLAB_DIR=\"${HOME}/lib/afqmclab-gcc\"",
-      f"module purge",
-      f"module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.6-pl1",
+      "module purge",
+      "module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.6-pl1",
       f"mpirun ${{HOME}}/bin/{exe} &> {exe}.out",
     ]
 
