@@ -14,7 +14,7 @@ def main():
       help='Number of nodes.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='general',type=str,
+  parser.add_argument('-q',dest='queue',default='gen',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run locally.'+dft)
@@ -28,7 +28,7 @@ def main():
 
   qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ptype=args.ptype)
 
-def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='general',ptype=None,preempt=False,jobname=None,wait=False):
+def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='gen',ptype=None,preempt=False,jobname=None,wait=False):
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   waitline = ["#SBATCH -W"] if wait else []
 
