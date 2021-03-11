@@ -12,6 +12,8 @@ def main():
       help='Executible to be called. Follow %s.x pattern.')
   parser.add_argument('-nn',dest='nn',default=1,type=int,
       help='Number of nodes.'+dft)
+  parser.add_argument('-ppn',dest='ppn',default='all',
+      help='Number of procs per node.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
   parser.add_argument('-q',dest='queue',default='general',type=str,
@@ -26,11 +28,14 @@ def main():
       help='Processor type to enforce (skylake or broadwell).'+dft)
   args=parser.parse_args()
 
-  qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ptype=args.ptype)
+  qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ppn=args.ppn,ptype=args.ptype)
 
-def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='general',ptype=None,preempt=False,jobname=None,wait=False):
+def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='general',ptype=None,preempt=False,jobname=None,wait=False):
+  if ppn != 'all': ppn = int(ppn)
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   waitline = ["#SBATCH -W"] if wait else []
+  npopt = f"-np {nn*ppn}" if ppn!="all" else ''
+
 
   if jobname is None: jobname = exe
   outlines = [
@@ -44,8 +49,8 @@ def qsub(exe='afqmc-srsu',local=False,nn=1,time='1:00:00',queue='general',ptype=
       "cd %s"%os.getcwd(),
        "export AFQMCLAB_DIR=\"${HOME}/lib/afqmclab-gcc\"",
       "module purge",
-      "module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.6-pl1",
-      f"mpirun ${{HOME}}/bin/{exe} &> {exe}.out",
+      "module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.8",
+      f"mpirun {npopt} ${{HOME}}/bin/{exe} &> {exe}.out",
     ]
 
   with open('qsub','w') as outf:
