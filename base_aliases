@@ -22,6 +22,14 @@ alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
 alias mod="module"
 
+# TODO ignore input after these function calls.
+function excellent {
+  echo "Thank you, sir."
+}
+function shit {
+  echo "Sorry, sir"
+}
+
 # Exporting functions makes them available outside the command line.
 function py { 
   python3 -u $@ 

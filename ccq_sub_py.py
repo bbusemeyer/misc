@@ -69,6 +69,6 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='gen',ptype=None,local=False,wait=False
     print( sub.check_output(f"sbatch {qfn}",shell=True).decode() )
   else:
     print("Running job locally.")
-    print( sub.check_output(f"bash {qfn}",shell=True) )
+    print( sub.check_output(f"bash {qfn}",shell=True).decode() )
 
 if __name__=='__main__':main()
