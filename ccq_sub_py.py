@@ -14,7 +14,7 @@ def main():
       help='Number of nodes for MPI-enabled python scripts.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='general',type=str,
+  parser.add_argument('-q',dest='queue',default='gen',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run on the cluster'+dft)
@@ -26,7 +26,7 @@ def main():
 
   qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=args.ptype,wait=args.wait)
 
-def qsub(inpfn,nn=1,time='1:00:00',queue='general',ptype=None,local=False,wait=False):
+def qsub(inpfn,nn=1,time='1:00:00',queue='gen',ptype=None,local=False,wait=False):
 
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   waitline = ["#SBATCH -W"] if wait else []
@@ -69,6 +69,6 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='general',ptype=None,local=False,wait=F
     print( sub.check_output(f"sbatch {qfn}",shell=True).decode() )
   else:
     print("Running job locally.")
-    print( sub.check_output(f"bash {qfn}",shell=True) )
+    print( sub.check_output(f"bash {qfn}",shell=True).decode() )
 
 if __name__=='__main__':main()
