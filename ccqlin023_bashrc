@@ -5,6 +5,7 @@ export PATH=${HOME}/tools/busempyer:$PATH
 export PATH=${HOME}/tools:$PATH
 export PATH=${HOME}/bin:$PATH
 export PATH=.:$PATH
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/embeddingAFQMC
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyWannier90/src
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pybind11
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyqmc

@@ -30,7 +30,7 @@ def main():
 
   qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ppn=args.ppn,ptype=args.ptype)
 
-def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='general',ptype=None,preempt=False,jobname=None,wait=False):
+def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',ptype=None,preempt=False,jobname=None,wait=False):
   if ppn != 'all': ppn = int(ppn)
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   waitline = ["#SBATCH -W"] if wait else []
