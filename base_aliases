@@ -32,11 +32,11 @@ function shit {
 
 # Exporting functions makes them available outside the command line.
 function py { 
-  python3 -u $@ 
+  python3 -W ignore -u $@ 
 }
 export -f py
 function py2 { 
-  python2 -u $@ 
+  python2 -W ignore -u $@ 
 }
 export -f py2
 
