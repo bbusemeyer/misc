@@ -16,7 +16,7 @@ def main():
       help='Number of procs per node.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='gen',type=str,
+  parser.add_argument('-q',dest='queue',default='ccq',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run locally.'+dft)

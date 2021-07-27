@@ -14,7 +14,7 @@ def main():
       help='Number of nodes for MPI-enabled python scripts.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='gen',type=str,
+  parser.add_argument('-q',dest='queue',default='ccq',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run on the cluster'+dft)
@@ -28,7 +28,7 @@ def main():
 
   qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=ptype,wait=args.wait)
 
-def qsub(inpfn,nn=1,time='1:00:00',queue='gen',ptype=None,local=False,wait=False):
+def qsub(inpfn,nn=1,time='1:00:00',queue='ccq',ptype=None,local=False,wait=False):
 
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
   waitline = ["#SBATCH -W"] if wait else []
@@ -53,20 +53,14 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='gen',ptype=None,local=False,wait=False
     ] + ptypeline + waitline + [
       "cd {}".format(os.getcwd()),
       "export PYTHONPATH={}".format(':'.join(sys.path)),
-      "# These lines enable MKL for PySCF.",
-      "module purge",
-      "module load intel/mkl/2020",
-      "export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_def.so:$MKLROOT/lib/intel64/libmkl_sequential.so:$MKLROOT/lib/intel64/libmkl_core.so:/cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/compiler/lib/intel64/libiomp5.so",
-      "cat /proc/cpuinfo | grep 'model name' | uniq",
-      "module load gcc",
-      "module load python3/3.7.3",
+      ". /mnt/home/bbusemeyer/bin/setup_pyscf",
     ] + exelines
 
 
 
   # Avoid script clashes.
   qfn, i = "qsub", 0
-  while os.path.exists(qfn + str(i) + ".py"): i += 1
+  while os.path.exists(qfn + str(i)): i += 1
   qfn = qfn + str(i)
 
   with open(qfn,'w') as outf:
