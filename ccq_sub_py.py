@@ -37,10 +37,10 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='ccq',ptype=None,local=False,wait=False
     exelines = [
         "module load openmpi",
         "export OMP_NUM_THREADS 1",
-        f"mpirun python3 -u {inpfn} &> {inpfn}.out"
+        f"mpirun ~/bin/pyscf -u {inpfn} &> {inpfn}.out"
       ]
   else:
-    exelines = [f"python3 -u {inpfn} &> {inpfn}.out"]
+    exelines = [f"~/bin/pyscf -u {inpfn} &> {inpfn}.out"]
 
   outlines = [
       "#!/bin/bash",
@@ -53,7 +53,6 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='ccq',ptype=None,local=False,wait=False
     ] + ptypeline + waitline + [
       "cd {}".format(os.getcwd()),
       "export PYTHONPATH={}".format(':'.join(sys.path)),
-      ". /mnt/home/bbusemeyer/bin/setup_pyscf",
     ] + exelines
 
 
