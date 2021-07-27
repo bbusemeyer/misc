@@ -24,15 +24,15 @@ def main():
       help='Number of QE "pools" corresponding to division of kpoints.'+dft)
   parser.add_argument('-ni',dest='ni',default=1,type=int,
       help='Number of QE "images" corresponding to division of phonon qpoints.'+dft)
-  parser.add_argument('--ptype',dest='ptype',default=None,
-      help='Processor type to enforce (skylake or broadwell).'+dft)
+  parser.add_argument('-C','--ptype',dest='ptype',default='skylake',type=str,
+      help='Processor type to enforce (skylake, broadwell, or rome), "any" will allow any.'+dft)
   args=parser.parse_args()
 
   qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ppn=args.ppn,ptype=args.ptype)
 
-def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',ptype=None,preempt=False,jobname=None,wait=False):
+def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',ptype='skylake',preempt=False,jobname=None,wait=False):
   if ppn != 'all': ppn = int(ppn)
-  ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
+  ptypeline = [f"#SBATCH -C {ptype}"] if ptype != 'any' else []
   waitline = ["#SBATCH -W"] if wait else []
   npopt = f"-np {nn*ppn}" if ppn!="all" else ''
 

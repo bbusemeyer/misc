@@ -24,7 +24,9 @@ def main():
       help='Wait for job to finish before returning.'+dft)
   args=parser.parse_args()
 
-  qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=args.ptype,wait=args.wait)
+  ptype = args.ptype if args.ptype != 'none' else None
+
+  qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=ptype,wait=args.wait)
 
 def qsub(inpfn,nn=1,time='1:00:00',queue='gen',ptype=None,local=False,wait=False):
 
@@ -53,18 +55,19 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='gen',ptype=None,local=False,wait=False
       "export PYTHONPATH={}".format(':'.join(sys.path)),
       "# These lines enable MKL for PySCF.",
       "module purge",
-      "module load cmake slurm",
       "module load intel/mkl/2020",
-      "export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_def.so:$MKLROOT/lib/intel64/libmkl_sequential.so:$MKLROOT/lib/intel64/libmkl_core.so:/cm/shared/sw/pkg/vendor/intel-pstudio/2019/compilers_and_libraries_2019.0.117/linux/compiler/lib/intel64/libiomp5.so",
+      "export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_def.so:$MKLROOT/lib/intel64/libmkl_sequential.so:$MKLROOT/lib/intel64/libmkl_core.so:/cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/compiler/lib/intel64/libiomp5.so",
+      "cat /proc/cpuinfo | grep 'model name' | uniq",
       "module load gcc",
       "module load python3/3.7.3",
     ] + exelines
 
 
+
   # Avoid script clashes.
   qfn, i = "qsub", 0
   while os.path.exists(qfn + str(i) + ".py"): i += 1
-  qfn = qfn + str(i) + ".py"
+  qfn = qfn + str(i)
 
   with open(qfn,'w') as outf:
     outf.write('\n'.join(outlines))
