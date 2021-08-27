@@ -1,7 +1,28 @@
 source ~/tools/misc/env/base_bashrc
 
-export MODULEPATH=~bbusemeyer/tools/misc/modulefiles/ccq:$MODULEPATH
+export MODULEPATH=~bbusemeyer/tools/misc/modulefiles:$MODULEPATH
 export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
+
+
+export MPLCONFIGDIR="/mnt/home/bbusemeyer/.cache/matplotlib"
+
+# Set mpirun debugger with use of -debug option.
+export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
+
+# The many AFQMCLAB locations.
+#export AFQMCLAB_DIR_GCC="${HOME}/lib/afqmclab-gcc"
+#export AFQMCLAB_DIR_DEBUG="${HOME}/lib/afqmclab-debug"
+#export AFQMCLAB_DIR=$AFQMCLAB_DIR_GCC
+
+# Intel compiler variables.
+#source /opt/intel/bin/compilervars.sh intel64
+#source /opt/intel/bin/ifortvars.sh intel64
+
+#### OLD BAD SETUP #####
+# Some very basic module loads. 
+#module load gcc
+#module load python3
+#module load slurm
 
 # Add sources to path.
 #export PATH=${HOME}/tools/busempyer:$PATH
@@ -23,22 +44,3 @@ export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
 #export PYTHONPATH=$PYTHONPATH:${HOME}/programs/afqmclab/scripts
 
 #export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
-
-export MPLCONFIGDIR="/mnt/home/bbusemeyer/.cache/matplotlib"
-
-# Set mpirun debugger with use of -debug option.
-export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
-
-# The many AFQMCLAB locations.
-#export AFQMCLAB_DIR_GCC="${HOME}/lib/afqmclab-gcc"
-#export AFQMCLAB_DIR_DEBUG="${HOME}/lib/afqmclab-debug"
-#export AFQMCLAB_DIR=$AFQMCLAB_DIR_GCC
-
-# Intel compiler variables.
-#source /opt/intel/bin/compilervars.sh intel64
-#source /opt/intel/bin/ifortvars.sh intel64
-
-# Some very basic module loads. 
-#module load gcc
-#module load python3
-#module load slurm
