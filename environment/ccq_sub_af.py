@@ -47,9 +47,10 @@ def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',
       f"#SBATCH -p {queue}",
       ] + ptypeline + waitline + [
       "cd %s"%os.getcwd(),
-       "export AFQMCLAB_DIR=\"${HOME}/lib/afqmclab-gcc\"",
+      "export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH",
       "module purge",
-      "module load slurm gcc cmake openmpi/1.10.7-hfi intel/mkl/2017-4 python3 lib/hdf5/1.8.21 lib/gmp/6.1.2 lib/fftw3/3.3.8",
+      "module load afqmclab/rome-20210525",
+      "module load slurm",
       f"mpirun {npopt} ${{HOME}}/bin/{exe} &> {exe}.out",
     ]
 
