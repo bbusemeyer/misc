@@ -1,4 +1,4 @@
-source ~/tools/misc/base_bashrc
+source ~/tools/misc/env/base_bashrc
 
 export MODULEPATH=~bbusemeyer/tools/misc/modulefiles/ccq:$MODULEPATH
 export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
