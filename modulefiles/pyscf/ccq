@@ -1,0 +1,22 @@
+#%Module
+set   pkg       workspace
+set   version   2021-08-27
+set   root      ~bbusemeyer/soft/pyscf
+ 
+proc ModulesHelp { } {
+  puts stderr "Sets up pyscf."
+}
+ 
+module-whatis   "Sets up pyscf."
+ 
+conflict $pkg intel/mpi intel/compiler
+
+module load gcc
+module load python3
+module load intel/mkl/2020
+
+prepend-path PYTHONPATH  ${root}
+prepend-path LD_PRELOAD  /cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64/libmkl_def.so
+prepend-path LD_PRELOAD  /cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64/libmkl_sequential.so
+prepend-path LD_PRELOAD  /cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64/libmkl_core.so
+prepend-path LD_PRELOAD  /cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/compiler/lib/intel64/libiomp5.so

@@ -1,7 +1,7 @@
 source ~/tools/misc/env/base_bashrc
 
-export MODULEPATH=~bbusemeyer/tools/misc/modulefiles:$MODULEPATH
 export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
+export MODULEPATH=~bbusemeyer/tools/misc/modulefiles:$MODULEPATH
 
 
 export MPLCONFIGDIR="/mnt/home/bbusemeyer/.cache/matplotlib"
