@@ -4,8 +4,8 @@
 source /etc/bashrc
 
 # Install Ruby Gems to ~/programs/gems.
-export GEM_HOME=$HOME/programs/gems
-export PATH=$HOME/programs/gems/bin:$PATH
+#export GEM_HOME=$HOME/programs/gems
+#export PATH=$HOME/programs/gems/bin:$PATH
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

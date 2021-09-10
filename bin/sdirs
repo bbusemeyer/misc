@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in `squeue -u bbusemeyer | grep bbuse | awk '{print $1}'`
+do
+  echo $i
+  scontrol show job $i | grep WorkDir
+done
+
