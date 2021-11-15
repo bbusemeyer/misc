@@ -49,8 +49,8 @@ def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',
       "cd %s"%os.getcwd(),
       "export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH",
       "module purge",
-      "module load afqmclab/rome-20210525",
       "module load slurm",
+      "module load afqmclab/rome-20210525",
       f"mpirun {npopt} ${{HOME}}/bin/{exe} &> {exe}.out",
     ]
 

@@ -1,6 +1,6 @@
 source ~/tools/misc/env/base_bashrc
 
-export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
+#export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
 export MODULEPATH=~bbusemeyer/tools/misc/modulefiles:$MODULEPATH
 
 
@@ -18,28 +18,7 @@ export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
 #source /opt/intel/bin/compilervars.sh intel64
 #source /opt/intel/bin/ifortvars.sh intel64
 
-#### OLD BAD SETUP #####
-# Some very basic module loads. 
-#module load gcc
-#module load python3
-#module load slurm
-
 # Add sources to path.
-#export PATH=${HOME}/tools/busempyer:$PATH
-#export PATH=${HOME}/tools:$PATH
-#export PATH=${HOME}/bin:$PATH
-#export PATH=.:$PATH
-#export PYTHONPATH=$PYTHONPATH:${HOME}/projects/bndefect
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/embeddingAFQMC
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyWannier90/src
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pybind11
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyqmc
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyscf
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/mpi4pyscf
-#export PYTHONPATH=$PYTHONPATH:${HOME}/programs/autogenv2
-#export PYTHONPATH=$PYTHONPATH:${HOME}/tools/busempyer
-#export PYTHONPATH=$PYTHONPATH:${HOME}/tools/misc
-#export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.7
 
 #export PYTHONPATH=$PYTHONPATH:${HOME}/programs/afqmclab/scripts
 

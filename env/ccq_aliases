@@ -3,6 +3,7 @@ alias view='vi -R'
 alias python='python3'
 alias notebook="google-chrome; jupyter lab"
 alias qs=" squeue -u bbusemeyer -h -o '%.8i %.3P %.24j %.2t %.10M %.10l %.3D %13r' "
+alias sclean="rm qsub[!-1..9] -v ; rm slurm-*out -v"
 alias qdel="scancel"
 alias qstat="squeue"
 alias qsub="sbatch"
