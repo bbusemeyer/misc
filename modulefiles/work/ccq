@@ -11,9 +11,7 @@ module-whatis   "Sets up basic working environment."
  
 conflict $pkg intel/mpi intel/compiler
 
-module load gcc
 module load python3
-module load slurm
 
 prepend-path PATH ${root}/bin
 prepend-path PATH ${root}/tools/misc/bin
