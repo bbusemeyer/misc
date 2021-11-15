@@ -33,7 +33,7 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='ccq',ptype=None,local=False,wait=False
   
   ptypeline = [f"#SBATCH -C {ptype}"]                     if ptype is not None else []
   waitline = ["#SBATCH -W"]                               if wait else []
-  modlines = ["module purge"] + [f"module load {mod}" for mod in extra_mods] if extra_mods is not None else []
+  modlines = ["module purge", "module load python3"] + [f"module load {mod}" for mod in extra_mods] if extra_mods is not None else []
 
   outlines = [
       "#!/bin/bash",
