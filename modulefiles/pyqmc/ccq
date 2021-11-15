@@ -1,0 +1,16 @@
+#%Module
+set   pkg       pyqmc
+set   version   ccq
+set   root      /mnt/home/bbusemeyer/soft/pyqmc
+
+proc ModulesHelp { } {
+  puts stderr "Sets up pyqmc."
+}
+ 
+module-whatis   "Sets up pyqmc."
+
+module load gcc
+module load python3
+module load pyscf
+
+prepend-path PYTHONPATH  ${root}
