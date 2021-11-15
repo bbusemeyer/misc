@@ -18,3 +18,4 @@ prepend-path PATH ${root}/bin
 prepend-path PATH ${root}/tools/misc/bin
 
 prepend-path PYTHONPATH ${root}/tools/misc/bin
+prepend-path PYTHONPATH ${root}/tools/busempyer
