@@ -14,7 +14,7 @@ def main():
       help='Number of nodes for MPI-enabled python scripts.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='general',type=str,
+  parser.add_argument('-q',dest='queue',default='gen',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run on the cluster'+dft)
@@ -22,23 +22,18 @@ def main():
       help='Processor type to enforce (skylake or broadwell).'+dft)
   parser.add_argument('-W','--wait',dest='wait',default=False,action='store_true',
       help='Wait for job to finish before returning.'+dft)
+  parser.add_argument('-M','--modules',dest='extra_mods', default=[], nargs='+')
   args=parser.parse_args()
 
-  qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=args.ptype,wait=args.wait)
+  ptype = args.ptype if args.ptype != 'none' else None
 
-def qsub(inpfn,nn=1,time='1:00:00',queue='general',ptype=None,local=False,wait=False):
+  qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=ptype,wait=args.wait,extra_mods=args.extra_mods)
 
-  ptypeline = [f"#SBATCH -C {ptype}"] if ptype is not None else []
-  waitline = ["#SBATCH -W"] if wait else []
-
-  if nn > 1:
-    exelines = [
-        "module load openmpi",
-        "export OMP_NUM_THREADS 1",
-        f"mpirun python3 -u {inpfn} &> {inpfn}.out"
-      ]
-  else:
-    exelines = [f"python3 -u {inpfn} &> {inpfn}.out"]
+def qsub(inpfn,nn=1,time='1:00:00',queue='ccq',ptype=None,local=False,wait=False,extra_mods=None):
+  
+  ptypeline = [f"#SBATCH -C {ptype}"]                     if ptype is not None else []
+  waitline = ["#SBATCH -W"]                               if wait else []
+  modlines = ["module purge", "module load python3"] + [f"module load {mod}" for mod in extra_mods] if extra_mods is not None else []
 
   outlines = [
       "#!/bin/bash",
@@ -48,19 +43,17 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='general',ptype=None,local=False,wait=F
       "#SBATCH -J {}".format(inpfn),
       "#SBATCH -p {}".format(queue),
       "#SBATCH -o {}".format("slurm-%j.out"),
-    ] + ptypeline + waitline + [
+    ] + ptypeline + waitline + modlines + [
+      "module list",
       "cd {}".format(os.getcwd()),
-      "export PYTHONPATH={}".format(':'.join(sys.path)),
-      "# These lines enable MKL for PySCF.",
-      "module purge",
-      "module load cmake slurm",
-      "module load intel/mkl/2020",
-      "export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_def.so:$MKLROOT/lib/intel64/libmkl_sequential.so:$MKLROOT/lib/intel64/libmkl_core.so",
-      "module load gcc",
-      "module load python3/3.7.3",
-    ] + exelines
+     f"python3 -u {inpfn} &> {inpfn}.out",
+   ]
 
-  qfn = "qsub"
+  # Avoid script clashes.
+  qfn, i = "qsub", 0
+  while os.path.exists(qfn + str(i)): i += 1
+  qfn = qfn + str(i)
+
   with open(qfn,'w') as outf:
     outf.write('\n'.join(outlines))
 
@@ -69,6 +62,6 @@ def qsub(inpfn,nn=1,time='1:00:00',queue='general',ptype=None,local=False,wait=F
     print( sub.check_output(f"sbatch {qfn}",shell=True).decode() )
   else:
     print("Running job locally.")
-    print( sub.check_output(f"bash {qfn}",shell=True) )
+    print( sub.check_output(f"bash {qfn}",shell=True).decode() )
 
 if __name__=='__main__':main()

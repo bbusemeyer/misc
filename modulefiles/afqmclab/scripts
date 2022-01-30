@@ -1,0 +1,16 @@
+#%Module
+set   pkg       afqmc
+set   version   scripts
+set   root      /mnt/home/bbusemeyer/soft/afqmclab
+ 
+proc ModulesHelp { } {
+  puts stderr "Sets up bndefect working environment."
+}
+ 
+module-whatis "Sets up bndefect working environment."
+
+module load gcc
+module load python3
+module load pyscf
+
+prepend-path PYTHONPATH ${root}/scripts

@@ -1,0 +1,19 @@
+#%Module
+set   pkg       bndefect
+set   version   ccq
+set   root      /mnt/home/bbusemeyer/proj/downfolding_comparison
+set   soft      /mnt/home/bbusemeyer/soft
+
+proc ModulesHelp { } {
+  puts stderr "Sets up downfolding_comparison working environment."
+}
+ 
+module-whatis "Sets up downfolding_comparison working environment."
+
+module load work/${version}
+module load afqmclab/scripts
+module load pyscf
+
+prepend-path PYTHONPATH ${soft}/embeddingAFQMC
+prepend-path PYTHONPATH ${root}/CAS
+prepend-path PYTHONPATH ${root}/AFQMC

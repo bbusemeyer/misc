@@ -1,0 +1,18 @@
+#%Module
+set   pkg       bndefect
+set   version   ccq
+set   root      /mnt/home/bbusemeyer/proj/bndefect
+set   soft      /mnt/home/bbusemeyer/soft
+ 
+proc ModulesHelp { } {
+  puts stderr "Sets up bndefect working environment."
+}
+ 
+module-whatis "Sets up bndefect working environment."
+
+
+module load work/${version}
+module load afqmclab/scripts
+
+prepend-path PYTHONPATH ${soft}/embeddingAFQMC
+prepend-path PYTHONPATH ${root}

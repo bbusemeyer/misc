@@ -1,0 +1,5 @@
+#!/bin/bash
+
+module load intel/mkl/2020
+export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_def.so:$MKLROOT/lib/intel64/libmkl_sequential.so:$MKLROOT/lib/intel64/libmkl_core.so:/cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux/compiler/lib/intel64/libiomp5.so
+py $@

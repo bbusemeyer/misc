@@ -3,6 +3,7 @@
   name = Brian Busemeyer
 [core]
   editor = vim
+	excludesfile = /mnt/home/bbusemeyer/.gitignore_global
 [push]
 	default = simple
 

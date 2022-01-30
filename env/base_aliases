@@ -18,29 +18,26 @@ alias rsync='rsync --progress'
 alias qs='qstat -a'
 alias di='ls'
 alias dc='cd ..'
-alias qw='watch "qstat -a | grep \ R\ ; qstat -a | grep \ Q\ ; qstat -a | grep \ C\ "'
 alias update="sudo apt-get update; sudo apt-get dist-upgrade -y ; sudo apt-get autoremove -y"
 alias mod="module"
 
+# TODO ignore input after these function calls.
+function excellent {
+  echo "Thank you, sir."
+}
+function shit {
+  echo "Sorry, sir"
+}
+
 # Exporting functions makes them available outside the command line.
 function py { 
-  python3 -u $@ 
+  python3 -W ignore -u $@ 
 }
 export -f py
 function py2 { 
-  python2 -u $@ 
+  python2 -W ignore -u $@ 
 }
 export -f py2
-
-# tools shortcuts
-alias rr='~/tools/record_run.sh'
-alias pssh='~/tools/physics_ssh.sh'
-alias pscp='~/tools/physics_scp.sh'
-alias psftp='~/tools/physics_sftp.sh'
-alias cssh='~/tools/cs_ssh.sh'
-alias cscp='~/tools/cs_scp.sh'
-alias csftp='~/tools/cs_sftp.sh'
-alias ry='~/tools/recycle.sh'
 
 # git shortcuts.
 alias gs='git status'
@@ -53,16 +50,5 @@ alias gd='git diff'
 gflat='c3dc2ae2-74c6-11e8-93bb-0a6d4e044368'
 gsdsc='f327a108-b5cd-11e8-8241-0a3b7ca8ce66'
 
-# Lucas's office computer:
-hawk='busemey2@hawk.physics.illinois.edu'
-# Golub supercomputer
-gol='busemey2@golub.campuscluster.illinois.edu'
-# Office computer 
-#ver='brian@veritas.physics.illinois.edu'
-ver='busemey2@128.174.248.144'
-# Argonne Mira supercomputer.
-mira='busemey@mira.alcf.anl.gov'
 # Globus CLI
 glob='busemey2@cli.globusonline.org'
-# Blue Waters.
-bw='busemeye@bw.ncsa.illinois.edu'

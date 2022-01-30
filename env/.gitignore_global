@@ -1,4 +1,10 @@
 # Use: git config --global core.excludesfile ~/.gitignore_global
+#
+#
+#
+############################ Temp files.
+*.swp
+*.swo
 ############################ Images
 *.eps
 *.png

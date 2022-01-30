@@ -1,15 +1,16 @@
 source ~/tools/misc/base_bashrc
 
 # Add sources to path.
-export PATH=${HOME}/tools/busempyer:$PATH
-export PATH=${HOME}/tools:$PATH
-export PATH=${HOME}/bin:$PATH
-export PATH=.:$PATH
+export PATH=${HOME}/tools/busempyer:${PATH}
+export PATH=${HOME}/tools:${PATH}
+export PATH=${HOME}/bin:${PATH}
+export PATH=${HOME}/.local/bin:${PATH}
+export PATH=.:${PATH}
+export PYTHONPATH=$PYTHONPATH:${HOME}/programs/embeddingAFQMC
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyWannier90/src
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pybind11
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyqmc
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/pyscf
-export PYTHONPATH=$PYTHONPATH:${HOME}/programs/mpi4pyscf
 export PYTHONPATH=$PYTHONPATH:${HOME}/programs/autogenv2
 export PYTHONPATH=$PYTHONPATH:${HOME}/tools/busempyer
 export PYTHONPATH=$PYTHONPATH:${HOME}/tools/misc
@@ -33,12 +34,6 @@ export AFQMCLAB_DIR=$AFQMCLAB_DIR_GCC
 
 
 # Module commands
-module purge
 module load gcc
-module load cmake
-module load lib/hdf5/1.8.21
-module load intel/mkl/2020
-export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_def.so:$MKLROOT/lib/intel64/libmkl_sequential.so:$MKLROOT/lib/intel64/libmkl_core.so
-module unload python2.7
 module load python3/3.7.3
 module load slurm
