@@ -19,6 +19,7 @@ export PYTHONPATH=$PYTHONPATH:/home/brian/programs/downfolding
 export PYTHONPATH=$PYTHONPATH:/home/brian/tools/busempyer
 export PYTHONPATH=$PYTHONPATH:/home/brian/tools/misc
 export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/brian/lib:$LD_LIBRARY_PATH
 
 # Set mpirun debugger with use of -debug option.
 export OMPI_MCA_orte_base_user_debugger='/usr/bin/gdb -tui'
