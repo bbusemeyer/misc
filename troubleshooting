@@ -112,3 +112,21 @@ wget <latest spotify deb>
 ar -x spotify-client.deb
 tar xzf data.tar.gz
 sudo cp -r usr/share/spotify/* /lib64/spotify-client/
+
+================================================
+
+# A neat way to put an ISO on a USB
+
+[From a tip on creating a Windows USB in Linux](https://www.addictivetips.com/ubuntu-linux-tips/how-to-create-windows-10-bootable-usb-on-linux/)
+
+Use GParted to format to ext4 (Linux) or fat32 (windows, also safeest option).
+
+Use
+```
+sudo mount -o loop ~/path/to/any.iso /mnt/
+```
+to mount the ISO. 
+
+Copy all the files in /mnt into the USB.
+
+Worked for Windows 10 on Kubuntu.
