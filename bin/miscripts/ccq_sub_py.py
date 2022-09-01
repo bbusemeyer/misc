@@ -14,7 +14,7 @@ def main():
       help='Number of nodes for MPI-enabled python scripts.'+dft)
   parser.add_argument('-t',dest='time',default='1:00:00',type=str,
       help='Time string.'+dft)
-  parser.add_argument('-q',dest='queue',default='gen',type=str,
+  parser.add_argument('-q',dest='queue',default='ccq,gen',type=str,
       help='Queue.'+dft)
   parser.add_argument('-l',dest='local',action='store_true',
       help='Run on the cluster'+dft)
@@ -29,7 +29,7 @@ def main():
 
   qsub(inpfn=args.inpfn,nn=args.nn,time=args.time,queue=args.queue,ptype=ptype,wait=args.wait,extra_mods=args.extra_mods)
 
-def qsub(inpfn,nn=1,time='1:00:00',queue='ccq',ptype=None,local=False,wait=False,extra_mods=None):
+def qsub(inpfn,nn=1,time='1:00:00',queue='ccq,gen',ptype=None,local=False,wait=False,extra_mods=None):
   
   ptypeline = [f"#SBATCH -C {ptype}"]                     if ptype is not None else []
   waitline = ["#SBATCH -W"]                               if wait else []

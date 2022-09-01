@@ -2,6 +2,7 @@ source ~/tools/misc/env/base_bashrc
 
 #export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH
 export MODULEPATH=~bbusemeyer/tools/misc/modulefiles:$MODULEPATH
+shopt -s globstar
 
 
 export MPLCONFIGDIR="/mnt/home/bbusemeyer/.cache/matplotlib"

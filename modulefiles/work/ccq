@@ -11,8 +11,10 @@ module-whatis   "Sets up basic working environment."
 
 module load python3
 module load slurm
+module load harvest_qmcpack
 
 prepend-path PATH ${root}/bin
 prepend-path PATH ${root}/tools/misc/bin
 
 prepend-path PYTHONPATH ${root}/tools/misc/bin
+prepend-path PYTHONPATH ${root}/tools/busempyer

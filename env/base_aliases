@@ -48,7 +48,7 @@ alias gd='git diff'
 
 # Globus shortcuts.
 gflat='c3dc2ae2-74c6-11e8-93bb-0a6d4e044368'
-gsdsc='f327a108-b5cd-11e8-8241-0a3b7ca8ce66'
+gsdsc='92493232-2535-11eb-b161-0ee0d5d9299f'
 
 # Globus CLI
 glob='busemey2@cli.globusonline.org'

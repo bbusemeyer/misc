@@ -26,16 +26,18 @@ def main():
       help='Number of QE "images" corresponding to division of phonon qpoints.'+dft)
   parser.add_argument('-C','--ptype',dest='ptype',default='skylake',type=str,
       help='Processor type to enforce (skylake, broadwell, or rome), "any" will allow any.'+dft)
+  parser.add_argument('--preempt', dest='preempt', default=False, action='store_true',
+      help='Preempt queue.'+dft)
   args=parser.parse_args()
 
-  qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ppn=args.ppn,ptype=args.ptype)
+  qsub(exe=args.exe,time=args.time,queue=args.queue,local=args.local,nn=args.nn,ppn=args.ppn,ptype=args.ptype,preempt=args.preempt)
 
 def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',ptype='skylake',preempt=False,jobname=None,wait=False):
   if ppn != 'all': ppn = int(ppn)
   ptypeline = [f"#SBATCH -C {ptype}"] if ptype != 'any' else []
   waitline = ["#SBATCH -W"] if wait else []
-  npopt = f"-np {nn*ppn}" if ppn!="all" else ''
 
+  npopt = f"--ntasks-per-node={ppn}" if ppn!="all" else '-c1'
 
   if jobname is None: jobname = exe
   outlines = [
@@ -47,11 +49,12 @@ def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',
       f"#SBATCH -p {queue}",
       ] + ptypeline + waitline + [
       "cd %s"%os.getcwd(),
+      "module --force purge",
+      "module load modules-traditional",
       "export MODULEPATH=~pyang/soft/modulefiles:$MODULEPATH",
-      "module purge",
       "module load slurm",
       "module load afqmclab/rome-20210525",
-      f"mpirun {npopt} ${{HOME}}/bin/{exe} &> {exe}.out",
+      f"srun {npopt} ${{HOME}}/bin/{exe} &> {exe}.out",
     ]
 
   with open('qsub','w') as outf:
@@ -60,7 +63,7 @@ def qsub(exe='afqmc-srsu',local=False,nn=1,ppn='all',time='1:00:00',queue='ccq',
   if local:
     stdout = sub.check_output("bash ./qsub",shell=True).decode() 
   else:
-    stdout = sub.check_output("sbatch ./qsub",shell=True).decode()
+    stdout = sub.check_output("sbatch --reservation='buse' ./qsub",shell=True).decode()
 
   print(stdout)
 
