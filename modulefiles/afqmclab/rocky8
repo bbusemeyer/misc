@@ -1,0 +1,19 @@
+#%Module
+set   pkg       afqmclab
+set   version   rocky8
+set   root      /mnt/home/bbusemeyer/soft/afqmclab
+ 
+proc ModulesHelp { } {
+  puts stderr "Sets up AFQMCLab environment."
+}
+ 
+module-whatis "Sets up AFQMCLab environment."
+
+module        load               gcc/7.5.0 openmpi/4.0.7 gmp/6.2.1 cmake/3.20.6 intel-mkl/2020.4.304 fftw/3.3.10 hdf5/1.8.22 sprng/2.0 googletest/1.11.0 python/3.8.12
+setenv        AFQMCLAB_BASE      $root
+prepend-path  PYTHONPATH         $root/scripts
+setenv        AFQMCLAB_DIR       $root/install
+prepend-path  PATH               $root/bin
+prepend-path  CPATH              $root/include
+setenv        CMAKE_PREFIX_PATH  $root/cmake
+prepend-path  LD_LIBRARY_PATH    $root/lib

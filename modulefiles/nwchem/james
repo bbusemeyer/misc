@@ -1,0 +1,29 @@
+#%Module
+set   pkg       nwchem
+set   version   2022-02-16
+set   root      /mnt/home/bbusemeyer/soft/nwchem
+
+proc ModulesHelp { } {
+  puts stderr "Sets up NWChem."
+}
+ 
+module-whatis "Sets up NWChem."
+
+setenv  NWCHEM_TOP     ${root}
+setenv  NWCHEM_TARGET  "LINUX64"
+setenv  BLASOPT        "-lflexiblas -lpthread -lm -ldl"
+setenv  LAPACK_LIB     "-lflexiblas -lpthread -lm -ldl"
+setenv  USE_MPI        "y"
+setenv  USE_MPIF       "y"
+setenv  USE_MPIF4      "y"
+setenv  USE_64TO32     "y"
+setenv  ARMCI_NETWORK  "MPI-MT"
+setenv  BLAS_SIZE      "4"
+setenv  CC             "mpiicc" 
+setenv  CXX            "mpiicpc" 
+setenv  FC             "mpiifort"
+setenv  NWCHEM_MODULES "qm"
+
+module load modules/1.57-20211116.lua
+module load intel-oneapi-compilers/2021.4.0  intel-oneapi-mpi/2021.4.0   intel-oneapi-mkl/2021.4.0
+module load flexiblas

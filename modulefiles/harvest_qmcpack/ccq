@@ -1,0 +1,14 @@
+#%Module
+set   pkg       workspace
+set   version   2022-08-11
+set   root      ~/soft/harvest_qmcpack
+#set   mklsubroot /cm/shared/sw/pkg/vendor/intel-pstudio/2020/compilers_and_libraries_2020.0.166/linux
+
+proc ModulesHelp { } {
+  puts stderr "Sets up harvest_qmcpack."
+}
+module-whatis   "Sets up harvest_qmcpack."
+
+module load python3
+
+prepend-path PYTHONPATH  ${root}

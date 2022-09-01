@@ -1,0 +1,17 @@
+#%Module
+set     pkg         SPRNG
+set     version     2.0b
+set     root        /mnt/home/bbusemeyer/soft/sprng2.0_rocky8/sprng2.0-gnu
+
+proc ModulesHelp { } {
+    puts stderr "Sets the environment for $pkg-$version"
+}
+
+module-whatis   "Sets the environment for $pkg-$version"
+
+conflict $pkg intel/mpi intel/compiler
+
+module                  load  gcc/7.5.0 gmp/6.2.1 openmpi/4.0.7
+setenv            SPRNG_BASE  $root
+prepend-path           CPATH  $root/include
+prepend-path LD_LIBRARY_PATH  $root/lib
